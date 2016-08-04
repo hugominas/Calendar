@@ -25,8 +25,9 @@ var options             = watchify.args;
 
 // prepare browserify object
 var w = watchify(browserify(options)).transform(babelify.configure({
-        presets: ["es2015", "react"],
-        ignore: /(bower_components)|(node_modules)/
+        presets: ['react', 'es2015', 'stage-0'],
+        ignore: /(bower_components)|(node_modules)/,
+        plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
     }));
     w.on('update', bundle);
     w.on('log', gutil.log);

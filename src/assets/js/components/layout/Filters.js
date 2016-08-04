@@ -1,7 +1,7 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
 
-export default class Nav extends React.Component {
+export default class Filters extends React.Component {
   constructor() {
     super()
     this.state = {

@@ -1,26 +1,26 @@
 import dispatcher from "../dispatcher";
 
-export function createTodo(text) {
+export function createClass(text) {
   dispatcher.dispatch({
     type: "CREATE_TODO",
     text,
   });
 }
 
-export function deleteTodo(id) {
+export function deleteClass(id) {
   dispatcher.dispatch({
     type: "DELETE_TODO",
     id,
   });
 }
 
-export function reloadTodos() {
+export function reloadClasses() {
   // axios("http://someurl.com/somedataendpoint").then((data) => {
   //   console.log("got the data!", data);
   // })
-  dispatcher.dispatch({type: "FETCH_TODOS"});
+  dispatcher.dispatch({type: "FETCH_CLASSES"});
   setTimeout(() => {
-    dispatcher.dispatch({type: "RECEIVE_TODOS", todos: [
+    dispatcher.dispatch({type: "RECEIVE_CLASSES", todos: [
       {
         id: 8484848484,
         text: "Go Shopping Again",
