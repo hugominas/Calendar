@@ -1,12 +1,12 @@
 import React from "react";
 
-import Todo from "../components/Todo";
-import * as TodoActions from "../actions/TodoActions";
-import TodoStore from "../stores/TodoStore";
+import Filters from "../components/layout/Filters";
+import Calendar from "../components/layout/Calendar";
+import * as CalendarActions from "../actions/CalendarActions";
 
 
 export default class Weekly extends React.Component {
-  constructor() {
+/*  constructor() {
     super();
     this.getTodos = this.getTodos.bind(this);
     this.state = {
@@ -44,6 +44,18 @@ export default class Weekly extends React.Component {
         <button onClick={this.reloadTodos.bind(this)}>Reload!</button>
         <h1>Todos</h1>
         <ul>{TodoComponents}</ul>
+      </div>
+    );
+  }*/
+
+  render() {
+    const { location } = this.props;
+
+    return (
+      <div>
+        <Filters/>
+        <Calendar location={location} />
+        {this.props.children}
       </div>
     );
   }

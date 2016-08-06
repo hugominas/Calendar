@@ -2,27 +2,69 @@ import { EventEmitter } from "events";
 
 import dispatcher from "../dispatcher";
 
-class TodoStore extends EventEmitter {
+class CalendarStore extends EventEmitter {
   constructor() {
     super()
-    this.todos = [
+    this.calendar =
       {
-        id: 113464613,
-        text: "Go Shopping",
-        complete: false
-      },
-      {
-        id: 235684679,
-        text: "Pay Water Bill",
-        complete: false
-      },
-    ];
+    "2000": {
+      "Linha": {
+        "Cascais Linha": {
+          "Dance": {
+            "Kizomba": [
+              {"Piscina 1": {
+                "duration": "",
+                "pt": "",
+                "repeat": [1,2,3],
+                "startDate": "02-08-2016",
+                "endDate": "02-08-2017",
+                "intensity": "0"
+                }
+              },
+              {"Piscina 2": {
+                  "duration": "",
+                  "pt": "",
+                  "intensity": "1"
+                }
+              }
+            ]
+          },
+          "AQUA": {
+            "Kizomba": {
+              "Piscina 2": {
+                "duration": "",
+                "pt": "",
+                "intensity": "intensityNone"
+              }
+            }
+          }
+        }
+      }
+    },
+    "2100": {
+      "Linha": {
+        "Cascais Linha": {
+          "Dance": {
+            "Kizomba": {
+              "Piscina 1": {
+                "duration": "",
+                "pt": "",
+                "intensity": "intensityNone"
+              }
+            }
+          }
+        }
+      }
+    }
+
+};
+
   }
 
-  createTodo(text) {
+  createClasses(text) {
     const id = Date.now();
 
-    this.todos.push({
+    this.calendar.push({
       id,
       text,
       complete: false,
@@ -32,13 +74,13 @@ class TodoStore extends EventEmitter {
   }
 
   getAll() {
-    return this.todos;
+    return this.calendar;
   }
 
   handleActions(action) {
     switch(action.type) {
       case "CREATE_TODO": {
-        this.createTodo(action.text);
+        this.createClasses(action.text);
         break;
       }
       case "RECEIVE_TODOS": {
@@ -51,7 +93,7 @@ class TodoStore extends EventEmitter {
 
 }
 
-const todoStore = new TodoStore;
-dispatcher.register(todoStore.handleActions.bind(todoStore));
+const calendarStore = new CalendarStore;
+dispatcher.register(calendarStore.handleActions.bind(calendarStore));
 
-export default todoStore;
+export default calendarStore;

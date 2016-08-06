@@ -19,18 +19,17 @@ const cleanCSS    = require('gulp-clean-css');
 
 // add options to babelify
 var options             = watchify.args;
-    options.entries     = 'src/assets/js/client.js';
+    options.entries     = 'src/assets/js/bundle.js';
     options.extensions  = ['.js'];
 
-
-// prepare browserify object
-var w = watchify(browserify(options)).transform(babelify.configure({
-        presets: ['react', 'es2015', 'stage-0'],
-        ignore: /(bower_components)|(node_modules)/,
-        plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
-    }));
-    w.on('update', bundle);
-    w.on('log', gutil.log);
+    // prepare browserify object
+    var w = watchify(browserify(options)).transform(babelify.configure({
+            presets: ['react', 'es2015', 'stage-0'],
+            ignore: /(bower_components)|(node_modules)/,
+            plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy',   ['transform-es2015-classes', {loose: true}]]
+        }));
+        w.on('update', bundle);
+        w.on('log', gutil.log);
 
 
 // builder function
@@ -39,12 +38,13 @@ function bundle() {
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source('dist/assets/js/bundle.js'))
         .pipe(buffer())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest(''));
 }
 
 // task and listeners
 gulp.task('browserify', bundle);
+
 
 /**
  * This task removes all files inside the 'dist' directory.
@@ -110,7 +110,6 @@ gulp.task('css', () =>
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest('./dist/assets/css'))
 });
-
 
 
 gulp.task('default', (callback)=> {

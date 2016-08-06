@@ -17,9 +17,11 @@ export default class Filters extends React.Component {
   render() {
     const { location } = this.props;
     const { collapsed } = this.state;
-    const featuredClass = location.pathname === "/" ? "active" : "";
-    const archivesClass = location.pathname.match(/^\/favorites/) ? "active" : "";
-    const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
+
+    //TEMP
+    const featuredClass = location === "/" ? "active" : "";
+    const archivesClass = '' //location.match(/^\/favorites/) ? "active" : "";
+    const settingsClass = '' //location.match(/^\/settings/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
     return (
@@ -36,13 +38,13 @@ export default class Filters extends React.Component {
           <div class={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class={featuredClass}>
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Todos</IndexLink>
+                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Calendar</IndexLink>
               </li>
               <li class={archivesClass}>
-                <Link to="favorites" onClick={this.toggleCollapse.bind(this)}>Favorites</Link>
+                <Link to="weekly" onClick={this.toggleCollapse.bind(this)}>Weekly</Link>
               </li>
               <li class={settingsClass}>
-                <Link to="settings" onClick={this.toggleCollapse.bind(this)}>Settings</Link>
+                <Link to="daily" onClick={this.toggleCollapse.bind(this)}>Daily</Link>
               </li>
             </ul>
           </div>

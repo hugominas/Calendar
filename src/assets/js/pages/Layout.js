@@ -1,18 +1,14 @@
-import React from "react";
-import { Link } from "react-router";
+const React = require('react');
 
-import Filters from "../components/layout/Filters";
+//import Filters from "../components/layout/Filters";
 import Calendar from "../components/layout/Calendar";
+//import * as CalendarActions from "../actions/CalendarActions";
 
-export default class Layout extends React.Component {
+export class Layout extends React.Component {
   render() {
-    const { location } = this.props;
-
     return (
       <div>
-        <Filters/>
-        <Calendar location={location} />
-        {this.props.children}
+      <Calendar/>
       </div>
     );
   }
