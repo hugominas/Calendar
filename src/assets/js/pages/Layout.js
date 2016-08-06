@@ -4,7 +4,7 @@ const React = require('react');
 import Calendar from "../components/layout/Calendar";
 //import * as CalendarActions from "../actions/CalendarActions";
 
-export class Layout extends React.Component {
+export class Layout extends React.Component { 
   render() {
     return (
       <div>
