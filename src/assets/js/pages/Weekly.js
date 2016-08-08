@@ -1,11 +1,10 @@
-import React from "react";
+const React = require('react');
 
-import Filters from "../components/layout/Filters";
-import Calendar from "../components/layout/Calendar";
-import * as CalendarActions from "../actions/CalendarActions";
+const Filters = require('../components/layout/Filters').Filters;
+const Calendar = require('../components/layout/Calendar').Calendar;
+const CalendarActions = require('../actions/CalendarActions');
 
-
-export default class Weekly extends React.Component {
+export class Weekly extends React.Component {
 /*  constructor() {
     super();
     this.getTodos = this.getTodos.bind(this);

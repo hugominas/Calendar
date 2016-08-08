@@ -1,77 +1,12 @@
-import { EventEmitter } from "events";
-
-import dispatcher from "../dispatcher";
+const EventEmitter = require('events').EventEmitter;
+const dispatcher = require('../dispatcher');
 
 class CalendarStore extends EventEmitter {
   constructor() {
     super()
-    this.calendar =
-      {
-    "2000": {
-      "Linha": {
-        "Cascais Linha": {
-          "Dance": {
-            "Kizomba": [
-              {"Piscina 1": {
-                "duration": "",
-                "pt": "",
-                "repeat": [1,2,3],
-                "startDate": "02-08-2016",
-                "endDate": "02-08-2017",
-                "intensity": "0"
-                }
-              },
-              {"Piscina 2": {
-                  "duration": "",
-                  "pt": "",
-                  "intensity": "1"
-                }
-              }
-            ]
-          },
-          "AQUA": {
-            "Kizomba": {
-              "Piscina 2": {
-                "duration": "",
-                "pt": "",
-                "intensity": "intensityNone"
-              }
-            }
-          }
-        }
-      }
-    },
-    "2100": {
-      "Linha": {
-        "Cascais Linha": {
-          "Dance": {
-            "Kizomba": {
-              "Piscina 1": {
-                "duration": "",
-                "pt": "",
-                "intensity": "intensityNone"
-              }
-            }
-          }
-        }
-      }
-    }
-
-};
-
+    this.calendar ={"2000":{"Linha":{"Cascais Linha":{"Dance":{"Kizomba":[{"Estudio 2":{"startDate":"04-07-2016","endDate":"31-08-2016","duration":"45","repeat":"","pt":"","capacity":"","intensity":0}},{"Piscina 1":{"startDate":"04-07-2016","endDate":null,"duration":"","repeat":["1","3","5","7"],"pt":"","capacity":"","intensity":0}}]}}}},"1130":{"Linha":{"Cascais Linha":{"Dance":{"Zumba":[{"Estudio 2":{"startDate":"21-07-2016","endDate":null,"duration":"30","repeat":null,"pt":"","capacity":"","intensity":1}}]}}}}}
   }
 
-  createClasses(text) {
-    const id = Date.now();
-
-    this.calendar.push({
-      id,
-      text,
-      complete: false,
-    });
-
-    this.emit("change");
-  }
 
   getAll() {
     return this.calendar;
@@ -79,12 +14,17 @@ class CalendarStore extends EventEmitter {
 
   handleActions(action) {
     switch(action.type) {
-      case "CREATE_TODO": {
-        this.createClasses(action.text);
+      case "GET_CALENDAR": {
+        this.getAll();
         break;
       }
-      case "RECEIVE_TODOS": {
-        this.todos = action.todos;
+      case "GET_FILTERS": {
+        this.calendar = action.calendar;
+        this.emit("change");
+        break;
+      }
+      case "DO_FILTER": {
+        this.calendar = action.calendar;
         this.emit("change");
         break;
       }
@@ -95,5 +35,4 @@ class CalendarStore extends EventEmitter {
 
 const calendarStore = new CalendarStore;
 dispatcher.register(calendarStore.handleActions.bind(calendarStore));
-
-export default calendarStore;
+module.exports = calendarStore;

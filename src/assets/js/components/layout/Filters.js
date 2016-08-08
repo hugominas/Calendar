@@ -1,7 +1,9 @@
-import React from "react";
-import { IndexLink, Link } from "react-router";
+const React = require('react');
+const Link = require('react-router').Link;
+const IndexLink = require('react-router').IndexLink;
 
-export default class Filters extends React.Component {
+
+export class Filters extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -15,13 +17,12 @@ export default class Filters extends React.Component {
   }
 
   render() {
-    const { location } = this.props;
+    const { location } = this.props
     const { collapsed } = this.state;
-
     //TEMP
-    const featuredClass = location === "/" ? "active" : "";
-    const archivesClass = '' //location.match(/^\/favorites/) ? "active" : "";
-    const settingsClass = '' //location.match(/^\/settings/) ? "active" : "";
+    const featuredClass = location.href === "/" ? "active" : "";
+    const archivesClass = location.href.match(/^\/favorites/) ? "active" : "";
+    const settingsClass = location.href.match(/^\/settings/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
     return (
@@ -37,9 +38,7 @@ export default class Filters extends React.Component {
           </div>
           <div class={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class={featuredClass}>
-                <IndexLink to="/" onClick={this.toggleCollapse.bind(this)}>Calendar</IndexLink>
-              </li>
+              
               <li class={archivesClass}>
                 <Link to="weekly" onClick={this.toggleCollapse.bind(this)}>Weekly</Link>
               </li>

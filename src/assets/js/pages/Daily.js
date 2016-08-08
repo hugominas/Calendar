@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router";
+const React = require('react');
 
-import Filters from "../components/layout/Filters";
-import Calendar from "../components/layout/Calendar";
+const Link = require('react-router').Link;
+const Filters = require('../components/layout/Filters').Filters;
+const Calendar = require('../components/layout/Calendar').Calendar;
 
-export default class Daily extends React.Component {
+export class Daily extends React.Component {
   render() {
     const { location } = this.props;
 

@@ -1,20 +1,24 @@
-import dispatcher from "../dispatcher";
+const dispatcher = require("../dispatcher");
+const axios = require('axios');
 
-export function createClass(text) {
+export function getCalendar() {
   dispatcher.dispatch({
-    type: "CREATE_TODO",
-    text,
+    type: "GET_CALENDAR"
+  });
+}
+export function filterCalendar(filter) {
+  dispatcher.dispatch({
+    type: "GET_CALENDAR",
+    filter,
+  });
+}
+export function getFilters() {
+  dispatcher.dispatch({
+    type: "GET_FILTERS"
   });
 }
 
-export function deleteClass(id) {
-  dispatcher.dispatch({
-    type: "DELETE_TODO",
-    id,
-  });
-}
-
-export function reloadClasses() {
+export function reloadCalendar() {
   // axios("http://someurl.com/somedataendpoint").then((data) => {
   //   console.log("got the data!", data);
   // })
