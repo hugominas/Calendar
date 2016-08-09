@@ -1,11 +1,10 @@
 const React = require('react');
 
-const Link = require('react-router').Link;
 const Filters = require('../components/layout/Filters').Filters;
 const Calendar = require('../components/layout/Calendar').Calendar;
 const Header = require('../components/layout/Header').Header;
 
-export class Daily extends React.Component {
+export default class Daily extends React.Component {
   render() {
     const { location } = this.props;
 

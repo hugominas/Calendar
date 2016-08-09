@@ -1,20 +1,10 @@
-require('es5-shim');
-require('es5-shim/es5-sham');
-require('console-polyfill');
-require('es6-promise');
-require('fetch-ie8');
+import React from "react";
+import ReactDOM from "react-dom";
+import { Router, Route, IndexRoute, hashHistory } from "react-router";
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const hashHistory = require("react-router").hashHistory;
-const IndexRoute = require("react-router").IndexRoute;
-const Route = require("react-router").Route;
-const Router = require("react-router").Router;
-//DEFAUT TO CLASS NAME important import class name with var
-const Calendar = require('./components/layout/Calendar').Calendar;
-const Layout = require('./pages/Layout').Layout;
-const Weekly = require('./pages/Weekly').Weekly;
-const Daily = require('./pages/Daily').Daily;
+import Daily from "./pages/Daily";
+import Layout from "./pages/Layout";
+import Weekly from "./pages/Weekly";
 
 
 ReactDOM.render(

@@ -7,7 +7,7 @@ const Header = require('../components/layout/Header').Header;
 //import Filters from "../components/layout/Filters";
 //import * as CalendarActions from "../actions/CalendarActions";
 
-export class Layout extends React.Component {
+export default class Layout extends React.Component {
   render() {
     return (
       <div>

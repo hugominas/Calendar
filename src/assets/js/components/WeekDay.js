@@ -21,7 +21,8 @@ export class WeekDay extends React.Component {
             Object.keys(this.props[key]).map((k) => {
               //CHECK IF REPEATERS BELONG TO THE DAY
               //Todo: CHECK IF DATE IS TODAY///////////////////////7
-              (typeof this.props[key][k].repeat !=='undefined' && this.props[key][k].repeat.indexOf(i)!==-1)?prop.push(<ClassesBlock {... this.props[key][k]}/>):false;
+              let uniqueKey=Math.floor((Math.random() * 1000) + 1);;
+              (typeof this.props[key][k].repeat !=='undefined' && this.props[key][k].repeat.indexOf(i)!==-1)?prop.push(<ClassesBlock key={uniqueKey} {... this.props[key][k]}/>):false;
             });
         })
       i++;

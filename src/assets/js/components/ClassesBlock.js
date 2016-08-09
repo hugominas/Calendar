@@ -16,7 +16,7 @@ export class ClassBlocks extends React.Component {
         </li>
       );
     }*/
-
+    //GET FILTERSS
     return (
       <li>
         <span>{category}</span><span>{club}</span><span>{duration}</span><span>{endDate}</span><span>{intensity}</span><span>{pt}</span><span>{repeat}</span><span>{room}</span><span>{startDate}</span><span>{zona}</span>
