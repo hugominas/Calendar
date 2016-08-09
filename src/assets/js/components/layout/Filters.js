@@ -7,7 +7,7 @@ export class Filters extends React.Component {
   constructor() {
     super()
     this.state = {
-      collapsed: true,
+      collapsed: true,  
     };
   }
 
@@ -38,7 +38,7 @@ export class Filters extends React.Component {
           </div>
           <div class={"navbar-collapse " + navClass} id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              
+
               <li class={archivesClass}>
                 <Link to="weekly" onClick={this.toggleCollapse.bind(this)}>Weekly</Link>
               </li>

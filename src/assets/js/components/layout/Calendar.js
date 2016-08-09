@@ -1,14 +1,14 @@
 const React = require('react');
 const CalendarActions = require('../../actions/CalendarActions');
 const CalendarStore = require('../../stores/CalendarStore');
-const WeekDay = require('../WeekDay');
+const WeekDay = require('../WeekDay').WeekDay;
 
 export class Calendar extends React.Component {
   constructor() {
     super();
     this.getCalendar = this.getCalendar.bind(this);
     this.state = {
-      calendar: CalendarStore.getAll(),
+      calendars: CalendarStore.getAll(),
     };
   }
   componentWillMount() {
@@ -30,30 +30,17 @@ export class Calendar extends React.Component {
   }
 
   render() {
-    const  calendars  = this.state.calendar;
+    const  calendars = this.state.calendars;
 
     // Visit non-inherited enumerable keys
-    const CalendarComponents = Object.keys(calendars).forEach((key) => {
-      console.log(calendars[key])
-        return <WeekDay key={key} {...calendars[key]}/>;
+    let a=0;
+    const CalendarComponents = Object.keys(calendars).map((key) => {
+      a++;
+        return <div class="calendarBlock" key={a}><WeekDay {... calendars[key]}/></div>;
     });
 
-console.log(CalendarComponents)
-    const footerStyles = {
-      marginTop: "30px",
-    };
-
     return (
-      <div>
       <div>{CalendarComponents}</div>
-      <footer style={footerStyles}>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Copyright &copy; perfect.com</p>
-          </div>
-        </div>
-      </footer>
-      </div>
     );
   }
 }

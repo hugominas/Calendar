@@ -3,6 +3,7 @@ const React = require('react');
 const Filters = require('../components/layout/Filters').Filters;
 const Calendar = require('../components/layout/Calendar').Calendar;
 const CalendarActions = require('../actions/CalendarActions');
+const Header = require('../components/layout/Header').Header;
 
 export class Weekly extends React.Component {
 /*  constructor() {
@@ -52,9 +53,9 @@ export class Weekly extends React.Component {
 
     return (
       <div>
-        <Filters/>
+        <Filters location={location} />
+        <Header location={location} />
         <Calendar location={location} />
-        {this.props.children}
       </div>
     );
   }

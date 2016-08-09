@@ -1,27 +1,25 @@
-import React from "react";
+const React = require('react');
 
-export default class ClassBlocks extends React.Component {
+export class ClassBlocks extends React.Component {
   constructor(props) {
     super();
   }
 
   render() {
-    const { complete, edit, text } = this.props;
+    const { category, club, duration, endDate, intensity, pt, repeat, room, startDate, zona } = this.props;
+    //const icon = complete ? "\u2714" : "\u2716"
 
-    const icon = complete ? "\u2714" : "\u2716"
-
-    if (edit) {
+    /*if (edit) {
       return (
         <li>
           <input value={text} focus="focused"/>
         </li>
       );
-    }
+    }*/
 
     return (
       <li>
-        <span>{text}</span>
-        <span>{icon}</span>
+        <span>{category}</span><span>{club}</span><span>{duration}</span><span>{endDate}</span><span>{intensity}</span><span>{pt}</span><span>{repeat}</span><span>{room}</span><span>{startDate}</span><span>{zona}</span>
       </li>
     );
   }

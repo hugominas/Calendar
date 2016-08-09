@@ -34,12 +34,14 @@ var options             = watchify.args;
 
 // builder function
 function bundle() {
-    return w.bundle()
+    w.bundle()
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source('dist/assets/js/bundle.js'))
         .pipe(buffer())
         //.pipe(uglify())
         .pipe(gulp.dest(''));
+        browserSync.reload();
+        return;
 }
 
 // task and listeners
@@ -61,7 +63,9 @@ gulp.task('clean', () =>
  */
 gulp.task('browser-sync', () =>
 {
+
     return browserSync({ server:  { baseDir: './dist' } });
+
 });
 
 /**
