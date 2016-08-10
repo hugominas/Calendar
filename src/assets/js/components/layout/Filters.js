@@ -1,9 +1,11 @@
-const React = require('react');
-const Link = require('react-router').Link;
-const IndexLink = require('react-router').IndexLink;
+import React from "react";
+import { Link, IndexLink } from "react-router";
+
+import ClassesBlock from "../ClassesBlock";
+import * as CalendarActions from "../../actions/CalendarActions";
 
 
-export class Filters extends React.Component {
+export default class Filters extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -17,16 +19,17 @@ export class Filters extends React.Component {
   }
 
   render() {
+
     const { location } = this.props
     const { collapsed } = this.state;
     //TEMP
-    const featuredClass = location.href === "/" ? "active" : "";
-    const archivesClass = location.href.match(/^\/favorites/) ? "active" : "";
-    const settingsClass = location.href.match(/^\/settings/) ? "active" : "";
+    const featuredClass = this.props.location.pathname === "/" ? "active" : "";
+    const archivesClass = this.props.location.pathname.match(/^\/favorites/) ? "active" : "";
+    const settingsClass = this.props.location.pathname.match(/^\/settings/) ? "active" : "";
     const navClass = collapsed ? "collapse" : "";
 
     return (
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="section group scheduleFiltersn">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" onClick={this.toggleCollapse.bind(this)} >
@@ -48,7 +51,7 @@ export class Filters extends React.Component {
             </ul>
           </div>
         </div>
-      </nav>
+      </div>
     );
   }
 }

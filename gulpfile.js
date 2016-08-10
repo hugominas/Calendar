@@ -93,14 +93,14 @@ gulp.task('html', () =>
   */
  gulp.task('img', () =>
  {
-     return gulp.src(['./src/assets/img/**'])
+     return gulp.src(['./src/assets/images/**'])
          .pipe(plumber())
-         .pipe(imagemin({
+        /* .pipe(imagemin({
      			progressive: true,
      			svgoPlugins: [{removeViewBox: false}],
      			use: [pngquant()]
      		}))
-         .pipe(gulp.dest('./dist/assets/img'))
+*/         .pipe(gulp.dest('./dist/assets/images'))
  });
 
  /**

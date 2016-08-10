@@ -1,10 +1,11 @@
-const React = require('react');
-export const Link = require('react-router').Link;
+import React from "react";
+import { Link } from "react-router";
 
-const Filters = require('../components/layout/Filters').Filters;
-const Calendar = require('../components/layout/Calendar').Calendar;
-const CalendarActions = require('../actions/CalendarActions');
-const Header = require('../components/layout/Header').Header;
+import Filters from "../components/layout/Filters";
+import Calendar from "../components/layout/Calendar";
+import * as CalendarActions from "../actions/CalendarActions";
+import Header from "../components/layout/Header";
+
 
 export default class Weekly extends React.Component {
 /*  constructor() {
@@ -55,8 +56,10 @@ export default class Weekly extends React.Component {
     return (
       <div>
         <Filters location={location} />
-        <Header location={location} />
-        <Calendar location={location} />
+        <div class="weeklySchedule section group">
+          <Header location={location} />
+          <Calendar location={location} />
+        </div>
       </div>
     );
   }

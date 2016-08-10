@@ -1,8 +1,10 @@
-const React = require('react');
+import React from "react";
+import { Link } from "react-router";
 
-const Filters = require('../components/layout/Filters').Filters;
-const Calendar = require('../components/layout/Calendar').Calendar;
-const Header = require('../components/layout/Header').Header;
+import Filters from "../components/layout/Filters";
+import Calendar from "../components/layout/Calendar";
+import Header from "../components/layout/Header";
+
 
 export default class Daily extends React.Component {
   render() {
@@ -10,11 +12,11 @@ export default class Daily extends React.Component {
 
     return (
       <div>
-        <Filters/>
         <Filters location={location} />
-        <Header location={location} />
-        <Calendar location={location} />
-        {this.props.children}
+        <div class="weeklySchedule section group">
+          <Header location={location} />
+          <Calendar location={location} />
+        </div>
       </div>
     );
   }

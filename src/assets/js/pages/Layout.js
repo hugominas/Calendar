@@ -1,19 +1,25 @@
-const React = require('react') ;
-const Link = require('react-router').Link;
-const Filters = require('../components/layout/Filters').Filters;
-const Calendar = require('../components/layout/Calendar').Calendar;
-const Header = require('../components/layout/Header').Header;
+import React from "react";
+import { Link } from "react-router";
+
+import Filters from "../components/layout/Filters";
+import Calendar from "../components/layout/Calendar";
+import Header from "../components/layout/Header";
+
 
 //import Filters from "../components/layout/Filters";
 //import * as CalendarActions from "../actions/CalendarActions";
 
 export default class Layout extends React.Component {
   render() {
+    const { location } = this.props;
+
     return (
       <div>
       <Filters location={location} />
-      <Header location={location} />
-      <Calendar location={location} />
+        <div class="weeklySchedule section group">
+          <Header location={location} />
+          <Calendar location={location} />
+        </div>
       </div>
     );
   }

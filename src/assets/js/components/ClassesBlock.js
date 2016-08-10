@@ -1,12 +1,12 @@
-const React = require('react');
+import React from "react";
 
-export class ClassBlocks extends React.Component {
+export default class ClassBlocks extends React.Component {
   constructor(props) {
     super();
   }
 
   render() {
-    const { category, club, duration, endDate, intensity, pt, repeat, room, startDate, zona } = this.props;
+    const { category, club, duration, endDate, intensity, pt, repeat, room, startDate, zona, hour } = this.props;
     //const icon = complete ? "\u2714" : "\u2716"
 
     /*if (edit) {
@@ -18,9 +18,12 @@ export class ClassBlocks extends React.Component {
     }*/
     //GET FILTERSS
     return (
-      <li>
-        <span>{category}</span><span>{club}</span><span>{duration}</span><span>{endDate}</span><span>{intensity}</span><span>{pt}</span><span>{repeat}</span><span>{room}</span><span>{startDate}</span><span>{zona}</span>
-      </li>
+      <div class="classBlock">
+				<div class="classColor orange-bg"></div>
+				<span class="hourTime">{hour} | {duration}'</span>
+				<span class="className">{category}</span>
+			</div>
+
     );
   }
 }

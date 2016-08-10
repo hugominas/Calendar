@@ -1,5 +1,5 @@
-const dispatcher = require("../dispatcher");
-const axios = require('axios'); 
+import axios from "axios";
+import dispatcher from "../dispatcher";
 
 export function getCalendar() {
   dispatcher.dispatch({

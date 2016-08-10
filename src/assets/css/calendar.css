@@ -1,0 +1,606 @@
+/*--------------------------------------------------------
+3 Filtros
+---------------------------------------------------------*/
+#wrapper {
+    width: 100%;
+    position: relative;
+    text-align: left;
+}
+.group {
+    zoom: 1;
+}
+.group:after {
+    clear: both;
+}
+.group:before, .group:after {
+    content: "";
+    display: table;
+}
+.section {
+    clear: both;
+    padding: 0px;
+    margin: 0px;
+}
+.scheduleIntro {
+    padding: 0;
+}
+.span_2_of_12 {
+    width: 15.33%;
+}
+.span_3_of_12 {
+    width: 23.8%;
+}
+.span_4_of_12 {
+    width: 32.26%;
+}
+.span_1_of_12 {
+    width: 6.86%;
+}
+.col {
+    display: block;
+    float: left;
+    margin: 1% 0 1% 1.5%;
+}
+.schedule {
+    margin-top: 68px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.section.group.scheduleFilters {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.weekly {
+    width: 50%;
+    float: left;
+}
+
+.weekly .icon.active {
+    background: url('../images/calendarIcon.png') no-repeat;
+    background-position: center center;
+    width: 26px;
+    height: 26px;
+    float: right;
+    margin-right: 5px;
+}
+
+.weekly .icon {
+    background: url('../images/calendario.png') no-repeat;
+    background-position: center center;
+    width: 26px;
+    height: 26px;
+    float: right;
+    margin-right: 5px;
+}
+
+.daily {
+    width: 50%;
+    float: left;
+}
+
+.scheduleFilters div p {
+    font-family: 'Lato-Regular', sans-serif;
+    font-size: 1.077em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #3a3a3b;
+}
+
+.calendarMode p.type {
+    margin-top: 23px;
+    display: block;
+    letter-spacing: 1px;
+    float: left;
+    color: #3a3a3b;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+.calendarMode p.style {
+    margin-top: 0;
+    display: block;
+    font-weight: 600;
+    color: #3a3a3b;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 23px;
+}
+
+.daily .icon {
+    background: url('../images/calendario_dia.png') no-repeat;
+    background-position: center center;
+    width: 26px;
+    height: 26px;
+    float: left;
+    margin-left: 5px;
+}
+
+.daily .icon.active {
+    background: url('../images/calendaricon2.png') no-repeat;
+    background-position: center center;
+    width: 26px;
+    height: 26px;
+    float: left;
+    margin-left: 5px;
+}
+
+.gymLocation p,
+.gymActivities p {
+    text-align: left;
+    margin-bottom: 17px;
+}
+
+.searchGym,
+.searchClass {
+    width: 100%;
+    background: url('../images/lupa.png') no-repeat;
+    background-position: 202px;
+    background-color: #f5f3ec;
+    border-radius: 2px;
+}
+
+.gymLocation .searchGym input:valid,
+.gymLocation .searchClass input:valid {
+    color: #565656;
+    font-family: 'Lato-Bold';
+}
+
+.searchGym input,
+.searchClass input {
+    font-size: 1.077em;
+    font-family: 'Lato-Bold';
+    border: 0;
+    color: #565656;
+    border-radius: 0;
+    background: #f5f3ec;
+    box-shadow: none;
+    letter-spacing: 1px;
+    margin: 16px 0 14px 24px;
+    height: 17px;
+}
+
+.optionsGym {
+    display: none;
+    width: 100%;
+    height: 304px;
+    padding-top: 8px;
+    background-color: #e5e0ce;
+    /*  background-color: var(--pinkish-grey);*/
+    box-shadow: 0 30px 50px 0 rgba(0, 0, 0, 0.29);
+}
+
+.optionsClass {
+    display: none;
+    width: 100%;
+    height: 242px;
+    padding-top: 8px;
+    background-color: #e5e0ce;
+    /*  background-color: var(--pinkish-grey);*/
+    box-shadow: 0 30px 50px 0 rgba(0, 0, 0, 0.29);
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+input[type="checkbox"] + label span {
+    display: inline-block;
+    width: 14px;
+    height: 11px;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+    background: url(../images/check.png)no-repeat;
+}
+
+input[type="checkbox"]:checked + label {
+    opacity: 0.7;
+    font-family: 'Lato-bold';
+    font-size: 1em;
+    line-height: 1.82;
+    color: #ffffff;
+    color: var(--white);
+}
+
+.optionsGym h3 {
+    font-family: 'Lato-Bold';
+    font-size: 1em;
+    margin-left: 29px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #424242;
+}
+
+.optionsGym ul li {
+    padding-left: 17px;
+}
+
+.optionsGym ul li label {
+    opacity: 0.5;
+    font-family: 'Lato-Regular';
+    line-height: 1.82;
+    font-size: 1em;
+    color: #ffffff;
+    color: var(--white);
+}
+.intensityLevel.group.section{
+  margin:0 auto;
+}
+.optionsClass h3 {
+    cursor: pointer;
+    font-family: 'Lato-Bold';
+    font-size: 1em;
+    margin-left: 29px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #424242;
+}
+
+.optionsClass ul li {
+    padding-left: 17px;
+}
+
+.optionsClass ul li label {
+    opacity: 0.5;
+    font-family: 'Lato-Regular';
+    line-height: 1.82;
+    font-size: 1em;
+}
+
+.resetChoises,
+.allClasses {
+    background: #f4f1e9;
+    height: 50px;
+}
+
+.resetChoises span,
+.allClasses span {
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    padding-top: 15px;
+    font-family: 'Lato-Bold';
+    font-size: 0.915em;
+    color: #565656;
+}
+
+.classIntensity p {
+    text-align: center;
+}
+
+.intensityLevel {
+    text-align: center;
+    width: 113px;
+    margin: 0 auto;
+}
+
+.intensityBlock {
+    float: left;
+    margin-left: 5px;
+    background: #ada38b;
+    height: 26px;
+    width: 13.7px;
+    cursor: pointer;
+}
+
+
+/*SCHEDULE*/
+
+.weeklySchedule {
+    width: 100%;
+    border-radius: 4px;
+    background-color: #171614;
+}
+
+.dailySchedule {
+    width: 100%;
+    border-radius: 4px;
+    background-color: #171614;
+}
+.scheduleTime {
+    width: 9%;
+    float: left;
+}
+
+.dayTitle{
+    width: 11.5%;
+    float: left;
+    margin-left: 1%;
+    min-height: 5px;
+}
+
+.dayTop {
+    display: block;
+    opacity: 0.5;
+    font-family: 'Lato-Light';
+    font-size: .923em;
+    text-align: left;
+    margin-top: 61px;
+    margin-bottom: -3px;
+    color: #FFF;
+}
+
+.dayBottom {
+    display: block;
+    font-family: 'Lato-Bold';
+    font-size: 1.385em;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    margin-bottom: 2em;
+}
+
+.classBlock {
+    position: relative;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.07);
+    padding: 11% 0 12.85% 17.8%;
+    text-align: left;
+    margin-bottom: 9px;
+}
+
+.classBlock span {
+    display: block;
+}
+
+.weeklySchedule div .hourTime {
+    font-family: 'Lato-Bold';
+    font-size: 0.846em;
+    line-height: 1.82;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: -5px;
+}
+
+.weeklySchedule div .className {
+    font-family: 'Lato-Bold';
+    font-size: 1.154em;
+    letter-spacing: 0.4px;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.orange-bg {
+    background-color: #e6772e;
+}
+
+.classColor {
+    width: 5px;
+    height: 23px;
+    border-radius: 6.5px;
+    position: absolute;
+    top: 7px;
+    left: -2px;
+}
+
+.classColorDetails {
+    width: 5px;
+    height: 50px;
+    border-radius: 6.5px;
+    position: absolute;
+    top: 7px;
+    left: -2px;
+}
+
+.blue-bg {
+    background-color: #675ec4;
+}
+
+.yellow-bg {
+    background-color: #babb2c;
+}
+
+.green-bg {
+    background-color: #6ec050;
+}
+
+.bege-bg {
+    background-color: #fdc15f;
+}
+.red-bg{
+  background-color: #c9343e;
+}
+.purple-bg {
+    background-color: #9596d0;
+}
+.blueLighter-bg{
+  background-color: #18a3ac
+}
+
+.vertical-text-morning {
+    background: url('../images/morningBeje.png');
+    background-repeat: no-repeat;
+    background-position: 33px 12px;
+}
+
+.vertical-text-evening {
+    background: url('../images/afternoonBeje.png');
+    background-repeat: no-repeat;
+    background-position: 33px 12px;
+}
+
+.vertical-text-morning .morningSche,
+.vertical-text-evening .eveningSche {
+    margin-left: -5px;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    font-family: 'Lato-Bold';
+    display: block;
+    font-size: 1.154em;
+    margin-top: 60px;
+    margin-left: -7px;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+}
+
+.scheduleBorder {
+    width: 100%;
+    height: 1px;
+    display: block;
+    opacity: 0.11;
+    background: #FFF;
+    float: right;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    width: 86.7%;
+    margin-right: 3.4%;
+}
+.dailyClass .scheduleBorder {
+    width: 100%;
+    height: 1px;
+    display: block;
+    opacity: 0.11;
+    background: #FFF;
+    float: right;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    margin-right: 0;
+}
+
+.articleDashSchedule {
+    width: 32px;
+    height: 2px;
+    opacity: 0.3;
+    display: inline-block;
+    margin: 0em 0.5em 0.3em 1.4em;
+    background-color: #ffffff;
+}
+
+.classBlockDetails {
+    padding: 13px 0 0 31px;
+    z-index: 2;
+    position: absolute;
+    width: 119px;
+    height: 93px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    left: 421px;
+    top: 560px;
+}
+
+.hourDetails {
+    display: block;
+    opacity: 0.4;
+    font-family: 'Lato-Bold';
+    font-size: 0.846em;
+    color: #081d26;
+    margin-bottom: 8px;
+}
+
+.classDetails {
+    display: block;
+    font-family: 'Lato-Bold';
+    font-size: 1.154em;
+    letter-spacing: 0.4px;
+    color: #081d26;
+    margin-bottom: -4px;
+}
+
+.placeDetails {
+    display: block;
+    font-family: 'Lato-Bold';
+    opacity: 0.4;
+    font-size: 0.846em;
+    color: #081d26;
+}
+
+.classBlockDetails a.linkDetails {
+    display: block;
+    font-family: 'Lato-Bold';
+    font-size: 0.846em;
+    letter-spacing: 0.4px;
+    color: #b3a26c;
+}
+.dailyClass{
+  width: 87%;
+  float: left;
+}
+.dailyClasses{
+      padding-bottom: 30px;
+}
+.dailyClassHeader{
+padding-left: 22px;
+}
+.dailyClassHeader div{
+    opacity: 0.7;
+  font-family: 'Lato-Bold';
+  font-size: 0.923em;
+  color: #ffffff;
+}
+.dailyClassCorp:nth-child(even){
+  position: relative;
+  border-radius: 4px;
+  background-color: rgba(255,255,255,0.07);
+}
+.dailyClassCorp:nth-child(odd){
+  position: relative;
+  border-radius: 4px;
+  background-color: rgba(255,255,255,0.02);
+}
+.dailyClassCorp .dailyAula{
+  position: relative;
+}
+.dailyCross {
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+}
+.dailyCross:before, .dailyCross:after {
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  content: ' ';
+  height: 11px;
+  width: 2px;
+  background-color: #333;
+}
+.dailyCross:before {
+  transform: rotate(45deg);
+}
+.dailyCross:after {
+  transform: rotate(-45deg);
+}
+.dailyClassCorp .dailyAula span{
+    font-family: 'Lato-Bold';
+  font-size: 1.154em;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+}
+
+.dailyClassCorp .dailyHora span{
+  font-family: 'Lato-Light';
+  font-size: 1.154em;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+}
+.dailyClassCorp .dailyLocal span,.dailyClassCorp .dailyCategoria span,.dailyClassCorp .dailyClube span{
+  opacity: 0.7;
+  font-family: 'Lato-Light';
+  font-size: 1.154em;
+  letter-spacing: 0.4px;
+  color: #ffffff;
+}
+.dailyAula{
+width: 25%;
+}
+.dailyHora{
+width: 12%;
+}
+.dailyLocal,.dailyCategoria{
+width: 15%;
+}
+.dailyClube{
+width: 23%;
+}
+.dailySchedule .ScheduleDays div.active .dayBottom{
+    opacity: 1;
+}
+.dailySchedule .ScheduleDays div .dayBottom{
+    opacity: .5;
+}

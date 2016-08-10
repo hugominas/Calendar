@@ -1,9 +1,16 @@
-const React = require('react');
-const ClassesBlock = require('./ClassesBlock').ClassBlocks;
-const CalendarStore = require('../stores/CalendarStore');
+import React from "react";
+
+import ClassesBlock from "./ClassesBlock";
+import CalendarStore from "../stores/CalendarStore";
+import * as CalendarActions from "../actions/CalendarActions";
+
+Date.prototype.addDays = function(days) {
+    this.setDate(this.getDate() + parseInt(days));
+    return this;
+};
 
 
-export class WeekDay extends React.Component {
+export default class WeekDay extends React.Component {
   constructor(props) {
     super();
     this.getWeekDays();
@@ -12,21 +19,26 @@ export class WeekDay extends React.Component {
     this.weekDays=CalendarStore.getWeekDays();
   }
   render() {
-
     let i=0;
-    const classComponents = this.weekDays.map((key) => {
+    const currWeekDay = new Date();
+    const classComponents = this.weekDays.map((key1) => {
       //CHECK IF ITS ON THE CORRECT DAY AND ADD TO PROP
       let prop = []
-      Object.keys(this.props).map((key) => {
-            Object.keys(this.props[key]).map((k) => {
-              //CHECK IF REPEATERS BELONG TO THE DAY
-              //Todo: CHECK IF DATE IS TODAY///////////////////////7
-              let uniqueKey=Math.floor((Math.random() * 1000) + 1);;
-              (typeof this.props[key][k].repeat !=='undefined' && this.props[key][k].repeat.indexOf(i)!==-1)?prop.push(<ClassesBlock key={uniqueKey} {... this.props[key][k]}/>):false;
-            });
-        })
-      i++;
-        return <div class="weekDay" key={i}>{prop}</div>;
+
+        Object.keys(this.props.classes).map((key) => {
+              Object.keys(this.props.classes[key]).map((k) => {
+                //CHECK IF REPEATERS BELONG TO THE DAY
+                let thisDate  = new Date().addDays(currWeekDay.getDay()-i);
+                console.log(this.props.classes[key][k]);
+                if(new Date(this.props.classes[key][k].startDate)>thisDate || thisDate<new Date(this.props.classes[key][k].endDate)){
+                  let uniqueKey=Math.floor((Math.random() * 1000) + 1);
+                  (typeof this.props.classes[key][k].repeat !=='undefined' && this.props.classes[key][k].repeat.indexOf(i)!==-1)?prop.push(<ClassesBlock key={uniqueKey} {... this.props.classes[key][k]}/>):false;
+                }
+
+              });
+          })
+        i++;
+        return <div class="dayTitle" key={i}>{prop}</div>;
     });
 
 /*    const classComponents = Object.keys(this.props).map((key) => {
@@ -36,8 +48,10 @@ export class WeekDay extends React.Component {
     }); */
 
     return (
-        <div>
+        <div class="weekClasses section group" >
+          <div class={'scheduleTime vertical-text-'+this.props.period}><span class={this.props.period+'Sche'}>{this.props.period}</span></div>
           {classComponents}
+          <div class="scheduleBorder"></div>
         </div>
     );
   }
