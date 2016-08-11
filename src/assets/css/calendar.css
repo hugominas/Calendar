@@ -1,47 +1,61 @@
 /*--------------------------------------------------------
 3 Filtros
 ---------------------------------------------------------*/
+
 #wrapper {
     width: 100%;
     position: relative;
     text-align: left;
 }
+
 .group {
     zoom: 1;
 }
+
 .group:after {
     clear: both;
 }
-.group:before, .group:after {
+
+.group:before,
+.group:after {
     content: "";
     display: table;
 }
+
 .section {
     clear: both;
     padding: 0px;
     margin: 0px;
 }
+
 .scheduleIntro {
     padding: 0;
 }
+
 .span_2_of_12 {
     width: 15.33%;
 }
+
 .span_3_of_12 {
     width: 23.8%;
 }
+
 .span_4_of_12 {
     width: 32.26%;
 }
+
 .span_1_of_12 {
     width: 6.86%;
 }
+
 .col {
     display: block;
     float: left;
     margin: 1% 0 1% 1.5%;
 }
+
 .schedule {
+    text-transform: uppercase;
     margin-top: 68px;
     width: 90%;
     margin: 0 auto;
@@ -67,6 +81,7 @@
 }
 
 .weekly .icon {
+    cursor: pointer;
     background: url('../images/calendario.png') no-repeat;
     background-position: center center;
     width: 26px;
@@ -88,11 +103,13 @@
     color: #3a3a3b;
 }
 
-.calendarMode p.type {
+p.type {
+    text-decoration: uppercase;
     margin-top: 23px;
     display: block;
     letter-spacing: 1px;
     float: left;
+    margin-bottom: 40px;
     color: #3a3a3b;
     font-weight: 600;
     width: 100%;
@@ -100,16 +117,18 @@
 }
 
 .calendarMode p.style {
+    text-decoration: uppercase;
     margin-top: 0;
     display: block;
     font-weight: 600;
     color: #3a3a3b;
     text-align: center;
     letter-spacing: 1px;
-    margin-bottom: 23px;
+    margin-bottom: 26px;
 }
 
 .daily .icon {
+    cursor: pointer;
     background: url('../images/calendario_dia.png') no-repeat;
     background-position: center center;
     width: 26px;
@@ -142,8 +161,8 @@
     border-radius: 2px;
 }
 
-.gymLocation .searchGym input:valid,
-.gymLocation .searchClass input:valid {
+.searchGym input:valid,
+.searchClass input:valid {
     color: #565656;
     font-family: 'Lato-Bold';
 }
@@ -158,7 +177,7 @@
     background: #f5f3ec;
     box-shadow: none;
     letter-spacing: 1px;
-    margin: 16px 0 14px 24px;
+    margin: 11px 0 9px 19px;
     height: 17px;
 }
 
@@ -230,9 +249,11 @@ input[type="checkbox"]:checked + label {
     color: #ffffff;
     color: var(--white);
 }
-.intensityLevel.group.section{
-  margin:0 auto;
+
+.intensityLevel.group.section {
+    margin: 0 auto;
 }
+
 .optionsClass h3 {
     cursor: pointer;
     font-family: 'Lato-Bold';
@@ -274,6 +295,7 @@ input[type="checkbox"]:checked + label {
 
 .classIntensity p {
     text-align: center;
+    margin-bottom: 26px;
 }
 
 .intensityLevel {
@@ -284,11 +306,16 @@ input[type="checkbox"]:checked + label {
 
 .intensityBlock {
     float: left;
+    opacity: 0.29;
     margin-left: 5px;
     background: #ada38b;
     height: 26px;
     width: 13.7px;
     cursor: pointer;
+}
+
+.intensityBlock.active {
+    opacity: 1;
 }
 
 
@@ -305,12 +332,13 @@ input[type="checkbox"]:checked + label {
     border-radius: 4px;
     background-color: #171614;
 }
+
 .scheduleTime {
     width: 9%;
     float: left;
 }
 
-.dayTitle{
+.dayTitle {
     width: 11.5%;
     float: left;
     margin-left: 1%;
@@ -318,6 +346,8 @@ input[type="checkbox"]:checked + label {
 }
 
 .dayTop {
+    text-decoration: uppercase;
+    margin-left: 7px;
     display: block;
     opacity: 0.5;
     font-family: 'Lato-Light';
@@ -329,6 +359,8 @@ input[type="checkbox"]:checked + label {
 }
 
 .dayBottom {
+    margin-left: 7px;
+    text-decoration: uppercase;
     display: block;
     font-family: 'Lato-Bold';
     font-size: 1.385em;
@@ -338,6 +370,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .classBlock {
+    cursor: pointer;
     position: relative;
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.07);
@@ -360,6 +393,7 @@ input[type="checkbox"]:checked + label {
 
 .weeklySchedule div .className {
     font-family: 'Lato-Bold';
+    text-decoration: uppercase;
     font-size: 1.154em;
     letter-spacing: 0.4px;
     color: #fff;
@@ -403,14 +437,17 @@ input[type="checkbox"]:checked + label {
 .bege-bg {
     background-color: #fdc15f;
 }
-.red-bg{
-  background-color: #c9343e;
+
+.red-bg {
+    background-color: #c9343e;
 }
+
 .purple-bg {
     background-color: #9596d0;
 }
-.blueLighter-bg{
-  background-color: #18a3ac
+
+.blueLighter-bg {
+    background-color: #18a3ac
 }
 
 .vertical-text-morning {
@@ -419,14 +456,22 @@ input[type="checkbox"]:checked + label {
     background-position: 33px 12px;
 }
 
-.vertical-text-evening {
+.vertical-text-afternoon {
     background: url('../images/afternoonBeje.png');
     background-repeat: no-repeat;
     background-position: 33px 12px;
 }
 
+.vertical-text-evening {
+    background: url('../images/nightBeje.png');
+    background-repeat: no-repeat;
+    background-position: 36px 37px;
+}
+
 .vertical-text-morning .morningSche,
+.vertical-text-afternoon .afternoonSche,
 .vertical-text-evening .eveningSche {
+    text-decoration: uppercase;
     margin-left: -5px;
     -webkit-transform: rotate(-90deg);
     transform: rotate(-90deg);
@@ -437,6 +482,14 @@ input[type="checkbox"]:checked + label {
     margin-left: -7px;
     letter-spacing: 0.4px;
     color: #ffffff;
+}
+
+.vertical-text-afternoon .afternoonSche {
+    margin-top: 95px;
+}
+
+.vertical-text-evening .eveningSche {
+    margin-top: 85px;
 }
 
 .scheduleBorder {
@@ -451,6 +504,7 @@ input[type="checkbox"]:checked + label {
     width: 86.7%;
     margin-right: 3.4%;
 }
+
 .dailyClass .scheduleBorder {
     width: 100%;
     height: 1px;
@@ -498,11 +552,13 @@ input[type="checkbox"]:checked + label {
     font-family: 'Lato-Bold';
     font-size: 1.154em;
     letter-spacing: 0.4px;
+    text-decoration: uppercase;
     color: #081d26;
     margin-bottom: -4px;
 }
 
 .placeDetails {
+    text-decoration: uppercase;
     display: block;
     font-family: 'Lato-Bold';
     opacity: 0.4;
@@ -511,96 +567,197 @@ input[type="checkbox"]:checked + label {
 }
 
 .classBlockDetails a.linkDetails {
+    text-decoration: uppercase;
     display: block;
     font-family: 'Lato-Bold';
     font-size: 0.846em;
     letter-spacing: 0.4px;
     color: #b3a26c;
 }
-.dailyClass{
-  width: 87%;
-  float: left;
-}
-.dailyClasses{
-      padding-bottom: 30px;
-}
-.dailyClassHeader{
-padding-left: 22px;
-}
-.dailyClassHeader div{
-    opacity: 0.7;
-  font-family: 'Lato-Bold';
-  font-size: 0.923em;
-  color: #ffffff;
-}
-.dailyClassCorp:nth-child(even){
-  position: relative;
-  border-radius: 4px;
-  background-color: rgba(255,255,255,0.07);
-}
-.dailyClassCorp:nth-child(odd){
-  position: relative;
-  border-radius: 4px;
-  background-color: rgba(255,255,255,0.02);
-}
-.dailyClassCorp .dailyAula{
-  position: relative;
-}
-.dailyCross {
-  width: 11px;
-  height: 11px;
-  cursor: pointer;
-}
-.dailyCross:before, .dailyCross:after {
-  cursor: pointer;
-  position: absolute;
-  right: 15px;
-  content: ' ';
-  height: 11px;
-  width: 2px;
-  background-color: #333;
-}
-.dailyCross:before {
-  transform: rotate(45deg);
-}
-.dailyCross:after {
-  transform: rotate(-45deg);
-}
-.dailyClassCorp .dailyAula span{
-    font-family: 'Lato-Bold';
-  font-size: 1.154em;
-  letter-spacing: 0.4px;
-  color: #ffffff;
+
+.dailyClass {
+    width: 87%;
+    float: left;
 }
 
-.dailyClassCorp .dailyHora span{
-  font-family: 'Lato-Light';
-  font-size: 1.154em;
-  letter-spacing: 0.4px;
-  color: #ffffff;
+.dailyClassHeader {
+    padding-left: 22px;
 }
-.dailyClassCorp .dailyLocal span,.dailyClassCorp .dailyCategoria span,.dailyClassCorp .dailyClube span{
-  opacity: 0.7;
-  font-family: 'Lato-Light';
-  font-size: 1.154em;
-  letter-spacing: 0.4px;
-  color: #ffffff;
+
+.dailyClassHeader div {
+    opacity: 0.7;
+    font-family: 'Lato-Bold';
+    font-size: 0.923em;
+    color: #ffffff;
 }
-.dailyAula{
-width: 25%;
+
+.dailyClassCorp:nth-child(even) {
+    position: relative;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.07);
 }
-.dailyHora{
-width: 12%;
+
+.dailyClassCorp:nth-child(odd) {
+    position: relative;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.02);
 }
-.dailyLocal,.dailyCategoria{
-width: 15%;
+
+.dailyClassCorp .dailyAula {
+    position: relative;
 }
-.dailyClube{
-width: 23%;
+
+.dailyCross {
+    width: 11px;
+    height: 11px;
+    cursor: pointer;
 }
-.dailySchedule .ScheduleDays div.active .dayBottom{
+
+.dailyCross:before,
+.dailyCross:after {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    content: ' ';
+    height: 11px;
+    width: 2px;
+    background-color: #333;
+}
+
+.dailyCross:before {
+    transform: rotate(45deg);
+}
+
+.dailyCross:after {
+    transform: rotate(-45deg);
+}
+
+.dailyClassCorp .dailyAula span {
+    text-decoration: uppercase;
+    font-family: 'Lato-Bold';
+    font-size: 1.154em;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+}
+
+.dailyClassCorp .dailyHora span {
+    text-decoration: uppercase;
+    font-family: 'Lato-Light';
+    font-size: 1.154em;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+}
+
+.dailyClassCorp .dailyLocal span,
+.dailyClassCorp .dailyCategoria span,
+.dailyClassCorp .dailyClube span {
+    text-decoration: uppercase;
+    opacity: 0.7;
+    font-family: 'Lato-Light';
+    font-size: 1.154em;
+    letter-spacing: 0.4px;
+    color: #ffffff;
+}
+
+.dailyAula {
+    text-decoration: uppercase;
+    width: 25%;
+}
+
+.dailyHora {
+    text-decoration: uppercase;
+    width: 12%;
+}
+
+.dailyLocal,
+.dailyCategoria {
+    text-decoration: uppercase;
+    width: 15%;
+}
+
+.dailyClube {
+    text-decoration: uppercase;
+    width: 23%;
+}
+
+.dailySchedule .ScheduleDays div.active .dayBottom {
     opacity: 1;
 }
-.dailySchedule .ScheduleDays div .dayBottom{
+
+.dailySchedule .ScheduleDays div .dayBottom {
     opacity: .5;
+}
+
+.dayTime {
+    width: 84%;
+    margin: 0 auto;
+}
+
+.dayTime .morning {
+    cursor: pointer;
+    width: 24px;
+    background-image: url(../images/morningSoftGrey.png);
+    float: left;
+    height: 15px;
+    margin-top: 4px;
+    margin-right: 23px;
+    background-repeat: no-repeat;
+}
+
+.dayTime .morning.active {
+    background-image: url(../images/morning.png);
+}
+
+.dayTime .afternoon {
+    cursor: pointer;
+    background-image: url(../images/afternoonSoftGrey.png);
+    float: left;
+    height: 27px;
+    background-repeat: no-repeat;
+    width: 27px;
+    margin-right: 27px;
+}
+
+.dayTime .afternoon.active {
+    background-image: url(../images/afternoon.png);
+}
+
+.dayTime .evening {
+    cursor: pointer;
+    background-image: url(../images/night.png);
+    float: left;
+    height: 24px;
+    background-repeat: no-repeat;
+    width: 24px;
+}
+
+.dayTime .evening.active {
+    background-image: url(../images/nightGrey.png);
+}
+
+.classTime p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.activeCircle {
+    display: none;
+    float: left;
+    background-color: #e5e0ce;
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    margin-top: 68px;
+}
+
+.dayTitle.active .activeCircle {
+    display: block;
+}
+
+.opacity {
+    opacity: .5;
+}
+
+.calendarMode {
+    margin-left: 0;
 }

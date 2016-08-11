@@ -17,8 +17,9 @@ export default class Header extends React.Component {
   constructor() {
     super()
     this.state = {
-      collapsed: true,
+      collapsed: true
     };
+    this.getToday()
     this.getWeekDays();
     this.getMonthNames();
   }
@@ -34,6 +35,15 @@ export default class Header extends React.Component {
     const collapsed = !this.state.collapsed;
     this.setState({collapsed});
   }
+  getToday(){
+    this.state.today=CalendarStore.getToday();
+  }
+  filterDay(day) {
+    CalendarActions.setToday(day);
+    console.log(day)
+    this.setState({ today: day });
+  }
+
 
   render() {
     const { location } = this.props.location
@@ -42,12 +52,13 @@ export default class Header extends React.Component {
     const currWeekDay = new Date();
     let x = 0;
     const headerTitle = this.weekDays.map((key) => {
-      let thisDate  = new Date().addDays(currWeekDay.getDay()-x);
+      let today  = (x-this.state.today)+1;
+      let thisDate  = new Date().addDays(today);
       let thisDay   = thisDate.getDate();
       thisDay = ((''+thisDay).length==1)?'0'+thisDay:thisDay;
       let thisMonth = this.MonthDays[thisDate.getMonth()].substring(0,3);
       x++;
-      return <div class="dayTitle" key={x}><div class="dayTop">{thisDay} {thisMonth}<span class="articleDashSchedule"></span></div><span class="dayBottom">{key}</span></div>
+      return <div class={'dayTitle'+((today==0)?' active':'')} key={x} onClick={() => this.filterDay(today+3)}><div class="dayTop">{thisDay} {thisMonth}<span class="articleDashSchedule"></span></div><span class="dayBottom">{key}</span></div>
     })
 
 

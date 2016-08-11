@@ -12,11 +12,10 @@ import Header from "../components/layout/Header";
 export default class Layout extends React.Component {
   render() {
     const { location } = this.props;
-
     return (
       <div>
       <Filters location={location} />
-        <div class="weeklySchedule section group">
+        <div class={(location.pathname.match(/weekly/))?'weeklySchedule':'dailySchedule'+' section group'}>
           <Header location={location} />
           <Calendar location={location} />
         </div>

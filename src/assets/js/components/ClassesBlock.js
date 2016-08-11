@@ -7,6 +7,7 @@ export default class ClassBlocks extends React.Component {
 
   render() {
     const { category, club, duration, endDate, intensity, pt, repeat, room, startDate, zona, hour } = this.props;
+    
     //const icon = complete ? "\u2714" : "\u2716"
 
     /*if (edit) {

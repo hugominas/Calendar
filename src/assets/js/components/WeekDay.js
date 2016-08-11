@@ -24,12 +24,11 @@ export default class WeekDay extends React.Component {
     const classComponents = this.weekDays.map((key1) => {
       //CHECK IF ITS ON THE CORRECT DAY AND ADD TO PROP
       let prop = []
-
         Object.keys(this.props.classes).map((key) => {
               Object.keys(this.props.classes[key]).map((k) => {
                 //CHECK IF REPEATERS BELONG TO THE DAY
-                let thisDate  = new Date().addDays(currWeekDay.getDay()-i);
-                console.log(this.props.classes[key][k]);
+                let today  = (i-currWeekDay.getDay())+1;
+                let thisDate  = new Date().addDays(today);
                 if(new Date(this.props.classes[key][k].startDate)>thisDate || thisDate<new Date(this.props.classes[key][k].endDate)){
                   let uniqueKey=Math.floor((Math.random() * 1000) + 1);
                   (typeof this.props.classes[key][k].repeat !=='undefined' && this.props.classes[key][k].repeat.indexOf(i)!==-1)?prop.push(<ClassesBlock key={uniqueKey} {... this.props.classes[key][k]}/>):false;
@@ -48,7 +47,7 @@ export default class WeekDay extends React.Component {
     }); */
 
     return (
-        <div class="weekClasses section group" >
+        <div class="weekClasses section group">
           <div class={'scheduleTime vertical-text-'+this.props.period}><span class={this.props.period+'Sche'}>{this.props.period}</span></div>
           {classComponents}
           <div class="scheduleBorder"></div>
