@@ -62,7 +62,7 @@
 }
 
 .section.group.scheduleFilters {
-    width: 90%;
+    width: 95%;
     margin: 0 auto;
 }
 
@@ -80,6 +80,12 @@
     margin-right: 5px;
 }
 
+.weekly .icon.active:hover {
+    background: url('../images/calendario.png') no-repeat;
+}
+.weekly .icon:hover {
+    background: url('../images/calendarIcon.png') no-repeat;
+}
 .weekly .icon {
     cursor: pointer;
     background: url('../images/calendario.png') no-repeat;
@@ -94,7 +100,9 @@
     width: 50%;
     float: left;
 }
-
+.dailyClasses{
+  min-height: 200px;
+}
 .scheduleFilters div p {
     font-family: 'Lato-Regular', sans-serif;
     font-size: 1.077em;
@@ -104,7 +112,7 @@
 }
 
 p.type {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     margin-top: 23px;
     display: block;
     letter-spacing: 1px;
@@ -117,7 +125,7 @@ p.type {
 }
 
 .calendarMode p.style {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     margin-top: 0;
     display: block;
     font-weight: 600;
@@ -127,6 +135,9 @@ p.type {
     margin-bottom: 26px;
 }
 
+.daily .icon:hover {
+    background: url('../images/calendaricon2.png') no-repeat;
+}
 .daily .icon {
     cursor: pointer;
     background: url('../images/calendario_dia.png') no-repeat;
@@ -137,6 +148,9 @@ p.type {
     margin-left: 5px;
 }
 
+.daily .icon.active:hover {
+    background: url('../images/calendario_dia.png') no-repeat;
+}
 .daily .icon.active {
     background: url('../images/calendaricon2.png') no-repeat;
     background-position: center center;
@@ -317,8 +331,12 @@ input[type="checkbox"]:checked + label {
 .intensityBlock.active {
     opacity: 1;
 }
-
-
+.grau1.intensityBlock:hover,.grau2.intensityBlock:hover,.grau3.intensityBlock:hover,.grau4.intensityBlock:hover,.grau5.intensityBlock:hover,.grau6.intensityBlock:hover{
+opacity:1;
+}
+.grau1.intensityBlock.active:hover,.grau2.intensityBlock.active:hover,.grau3.intensityBlock.active:hover,.grau4.intensityBlock.active:hover,.grau5.intensityBlock.active:hover,.grau6.intensityBlock.active:hover{
+opacity:.29;
+}
 /*SCHEDULE*/
 
 .weeklySchedule {
@@ -346,7 +364,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .dayTop {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     margin-left: 7px;
     display: block;
     opacity: 0.5;
@@ -360,7 +378,7 @@ input[type="checkbox"]:checked + label {
 
 .dayBottom {
     margin-left: 7px;
-    text-decoration: uppercase;
+    text-transform: uppercase;
     display: block;
     font-family: 'Lato-Bold';
     font-size: 1.385em;
@@ -393,7 +411,7 @@ input[type="checkbox"]:checked + label {
 
 .weeklySchedule div .className {
     font-family: 'Lato-Bold';
-    text-decoration: uppercase;
+    text-transform: uppercase;
     font-size: 1.154em;
     letter-spacing: 0.4px;
     color: #fff;
@@ -441,15 +459,39 @@ input[type="checkbox"]:checked + label {
 .red-bg {
     background-color: #c9343e;
 }
+/*to add Color in Category:
+You need to add this classes, with this structure:
 
-.purple-bg {
-    background-color: #9596d0;
+.classColor.[classClolor]{
+border-bottom:0; /*you need to put this allways
+background-color: [Color];
+};
+You have some examples down here.
+*/
+.classColor.classColorAqua {
+    background-color: #00ade0;
+    border-bottom:0;
 }
-
-.blueLighter-bg {
-    background-color: #18a3ac
+.classColor.classColorMartialArts{
+    border-bottom:0;
+    background-color:#f98d10;
 }
-
+.classColor.classColorMindBody{
+    border-bottom:0;
+    background-color:#fbcd00;
+}
+.classColor.classColorConditioning{
+    border-bottom:0;
+    background-color:#f12e15;
+}
+.classColor.classColorPerformance{
+     border-bottom:0;
+    background-color:#005a9a;
+}
+.classColor.classColorDance{
+    border-bottom:0;
+  background-color:#8b4a97;
+}
 .vertical-text-morning {
     background: url('../images/morningBeje.png');
     background-repeat: no-repeat;
@@ -471,7 +513,7 @@ input[type="checkbox"]:checked + label {
 .vertical-text-morning .morningSche,
 .vertical-text-afternoon .afternoonSche,
 .vertical-text-evening .eveningSche {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     margin-left: -5px;
     -webkit-transform: rotate(-90deg);
     transform: rotate(-90deg);
@@ -531,6 +573,7 @@ input[type="checkbox"]:checked + label {
     z-index: 2;
     position: absolute;
     width: 119px;
+    display: none;
     height: 93px;
     border-radius: 4px;
     background-color: #ffffff;
@@ -552,13 +595,13 @@ input[type="checkbox"]:checked + label {
     font-family: 'Lato-Bold';
     font-size: 1.154em;
     letter-spacing: 0.4px;
-    text-decoration: uppercase;
+    text-transform: uppercase;
     color: #081d26;
     margin-bottom: -4px;
 }
 
 .placeDetails {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     display: block;
     font-family: 'Lato-Bold';
     opacity: 0.4;
@@ -567,7 +610,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .classBlockDetails a.linkDetails {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     display: block;
     font-family: 'Lato-Bold';
     font-size: 0.846em;
@@ -633,7 +676,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .dailyClassCorp .dailyAula span {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     font-family: 'Lato-Bold';
     font-size: 1.154em;
     letter-spacing: 0.4px;
@@ -641,7 +684,7 @@ input[type="checkbox"]:checked + label {
 }
 
 .dailyClassCorp .dailyHora span {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     font-family: 'Lato-Light';
     font-size: 1.154em;
     letter-spacing: 0.4px;
@@ -651,7 +694,7 @@ input[type="checkbox"]:checked + label {
 .dailyClassCorp .dailyLocal span,
 .dailyClassCorp .dailyCategoria span,
 .dailyClassCorp .dailyClube span {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     opacity: 0.7;
     font-family: 'Lato-Light';
     font-size: 1.154em;
@@ -660,23 +703,23 @@ input[type="checkbox"]:checked + label {
 }
 
 .dailyAula {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     width: 25%;
 }
 
 .dailyHora {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     width: 12%;
 }
 
 .dailyLocal,
 .dailyCategoria {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     width: 15%;
 }
 
 .dailyClube {
-    text-decoration: uppercase;
+    text-transform: uppercase;
     width: 23%;
 }
 
@@ -693,6 +736,9 @@ input[type="checkbox"]:checked + label {
     margin: 0 auto;
 }
 
+.dayTime .morning:hover {
+    background-image: url(../images/morning.png);
+}
 .dayTime .morning {
     cursor: pointer;
     width: 24px;
@@ -707,7 +753,12 @@ input[type="checkbox"]:checked + label {
 .dayTime .morning.active {
     background-image: url(../images/morning.png);
 }
-
+.dayTime .morning.active:hover{
+    background-image: url(../images/morningSoftGrey.png);
+}
+.dayTime .afternoon:hover {
+    background-image: url(../images/afternoonSoftGrey.png);
+}
 .dayTime .afternoon {
     cursor: pointer;
     background-image: url(../images/afternoonSoftGrey.png);
@@ -717,22 +768,32 @@ input[type="checkbox"]:checked + label {
     width: 27px;
     margin-right: 27px;
 }
-
+.dayTime .afternoon.active:hover {
+    background-image: url(../images/afternoonSoftGrey.png);
+}
 .dayTime .afternoon.active {
     background-image: url(../images/afternoon.png);
 }
 
+.dayTime .evening:hover {
+  background-repeat: no-repeat;
+    background: url(../images/nightGrey.png);
+}
 .dayTime .evening {
     cursor: pointer;
-    background-image: url(../images/night.png);
+    background: url(../images/night.png);
     float: left;
     height: 24px;
     background-repeat: no-repeat;
     width: 24px;
 }
 
+.dayTime .evening.active:hover {
+  background-repeat: no-repeat;
+    background: url(../images/night.png);
+}
 .dayTime .evening.active {
-    background-image: url(../images/nightGrey.png);
+    background: url(../images/nightGrey.png);
 }
 
 .classTime p {
@@ -760,4 +821,43 @@ input[type="checkbox"]:checked + label {
 
 .calendarMode {
     margin-left: 0;
+}
+
+.dayTime.section.group {
+    margin: 0 auto
+}
+
+
+@media screen and (max-width:1279px) {
+    .schedule {
+        width: 100%;
+    }
+    .dayTime{
+      width: 90%;
+    }
+    .searchGym, .searchClass {
+    background-position: 196px;
+  }
+}
+@media screen and (max-width:1145px) {
+  .dayTime {
+      width: 94%;
+  }
+  .searchGym input, .searchClass input {
+    margin: 11px 0 9px 9px;
+  }
+}
+@media screen and (max-width:1024px) {
+  .dayTime .morning {
+    margin-right: 20px;
+  }
+  .dayTime {
+    width: 100%;
+}
+.vertical-text-morning .morningSche, .vertical-text-afternoon .afternoonSche, .vertical-text-evening .eveningSche {
+    width: 134%;
+    }
+    .dayBottom{
+      font-size: 0.985em;
+    }
 }
