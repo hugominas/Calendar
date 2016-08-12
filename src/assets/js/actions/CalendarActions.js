@@ -24,6 +24,13 @@ export function setToday(today) {
     today
   });
 }
+export function setViewTimes(times) {
+  dispatcher.dispatch({
+    type: "SET_TIMES",
+    times
+  });
+}
+
 export function reloadFilters() {
 
    axios(CalendarStore.getFiltersURL()).then((data) => {

@@ -16,6 +16,7 @@ export default class Calendar extends React.Component {
     this.getCalendar = this.getCalendar.bind(this);
     this.state = {
       calendars: CalendarStore.getAll(),
+      times: CalendarStore.getTimes(),
     };
   }
   componentWillMount() {
@@ -29,6 +30,7 @@ export default class Calendar extends React.Component {
   getCalendar() {
     this.setState({
       calendars: CalendarStore.getAll(),
+      times: CalendarStore.getTimes()
     });
   }
 
@@ -43,12 +45,17 @@ export default class Calendar extends React.Component {
     let a=0;
     const CalendarComponents = Object.keys(calendars).map((key) => {
       a++;
-      let props = {classes: (calendars[key]||[]), period:key}
-      let className="";
-      if(location.pathname.match(/weekly/)){
-        return <WeekDay key={a} {... props}/>;
-      }else{
-        return <Day key={a} {... props}/>;
+      let props = {
+        classes: (calendars[key]||[]),
+        period:key
+      }
+      //CHECK IF ITS VISIBLE
+      if(this.state.times.indexOf(key)!==-1){
+        if(location.pathname.match(/weekly/)){
+          return <WeekDay key={a} {... props}/>;
+        }else{
+          return <Day key={a} {... props}/>;
+        }
       }
     });
 

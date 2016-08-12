@@ -12,7 +12,8 @@ class CalendarStore extends EventEmitter {
     this.weekDays   =['Monday','Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     this.monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.filters    ={};
-    this.classes    ={}
+    this.classes    ={};
+    this.times      =['morning','afternoon','evening'];
     this.selectedDay = new Date().getDay();
   }
 
@@ -40,6 +41,9 @@ class CalendarStore extends EventEmitter {
   }
   getFilters() {
     return this.filters;
+  }
+  getTimes() {
+    return this.times;
   }
   getAll() {
     return this.calendar = {
@@ -96,6 +100,13 @@ class CalendarStore extends EventEmitter {
         this.emit("change");
         break;
       }
+      case "SET_TIMES": {
+        this.times = action.times;
+        this.emit("change");
+        break;
+      }
+
+
     }
   }
 

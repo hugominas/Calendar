@@ -13,6 +13,7 @@ export default class Filters extends React.Component {
     this.getFilters = this.getFilters.bind(this);
     this.state = {
       filters: CalendarStore.getFilters(),
+      time:CalendarStore.getTimes(),
     };
   }
   componentWillMount() {
@@ -26,9 +27,15 @@ export default class Filters extends React.Component {
   getFilters() {
     this.setState({
       filters: CalendarStore.getFilters(),
+      time:CalendarStore.getTimes()
     });
   }
-
+  updateViewTime(time) {
+      let thisPosition=this.state.time.indexOf(time);
+      console.log(this.state.time, time,thisPosition);
+      (thisPosition!==-1)?this.state.time.splice(thisPosition,1):this.state.time.push(time);
+      CalendarActions.setViewTimes(this.state.time);
+  }
   reloadFilters() {
     CalendarActions.reloadFilters();
   }
@@ -36,21 +43,38 @@ export default class Filters extends React.Component {
   render() {
 
     const { location } = this.props
-    console.log(this.state.filters)
     let currentView = 'Weekly';
+    let weekActive = "active"
+    let dayActive = ""
     if(location.pathname.match(/daily/)){
       currentView = 'Daily';
+      weekActive = ""
+      dayActive = "active"
     }
+    let fromToTime ='07:00 to 12:00';
+    let actMor=(this.state.time.indexOf('morning')!==-1)?'active':'';
+    let actEve=(this.state.time.indexOf('evening')!==-1)?'active':'';
+    let actAft=(this.state.time.indexOf('afternoon')!==-1)?'active':'';
+
+    if(actMor=='active'&&actEve=='active'&&actAft=='active'){fromToTime='07:00 to 23:00';}
+    else if(actMor=='active'&&actAft=='active'){fromToTime='07:00 to 19:00';}
+    else if(actEve=='active'&&actAft=='active'){fromToTime='12:00 to 23:00';}
+    else if(actMor=='active'&&actEve=='active'){fromToTime='07:00 to 23:00';}
+    else if(actEve=='active'){fromToTime='19:00 to 23:00';}
+    else if(actAft=='active'){fromToTime='12:00 to 19:00';}
+
+
+
     return (
 
       <div class="section group scheduleFilters">
         <div class="col span_2_of_12 calendarMode">
           <p class="style">VIEW STYLE</p>
           <div class="weekly">
-            <Link to="weekly" class="icon active"></Link>
+            <Link to="weekly" class={'icon '+weekActive}></Link>
           </div>
           <div class="daily">
-            <Link to="daily" class="icon"></Link>
+            <Link to="daily" class={'icon '+dayActive}></Link>
           </div>
           <p class="type">{currentView}</p>
 
@@ -122,11 +146,11 @@ export default class Filters extends React.Component {
         <div class="col span_2_of_12 classTime">
           <p>DAY TIME</p>
           <div class="dayTime">
-            <span class="morning active"></span>
-            <span class="afternoon active"></span>
-            <span class="evening"></span>
+            <span class={'morning '+actMor} onClick={()=>this.updateViewTime('morning')}></span>
+            <span class={'afternoon '+actAft} onClick={()=>this.updateViewTime('afternoon')}></span>
+            <span class={'evening '+actEve} onClick={()=>this.updateViewTime('evening')}></span>
           </div>
-          <p class="type">07:00 to 12:00</p>
+          <p class="type">{fromToTime}</p>
         </div>
       </div>
     );

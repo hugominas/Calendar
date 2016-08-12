@@ -39,11 +39,13 @@ export default class Header extends React.Component {
     this.state.today=CalendarStore.getToday();
   }
   filterDay(day) {
-    //CHECK IF ITS ON DAY METHOD TO AVOID MEMORY LLEACK
-    //fix for sunday offest
-    day=((day.getDay())==0)?6:day.getDay()-1;
-    CalendarActions.setToday(day);
-    this.setState({ clickedDay: day });
+    return ()=> {
+      //CHECK IF ITS ON DAY METHOD TO AVOID MEMORY LLEACK
+      //fix for sunday offest
+      day=((day.getDay())==0)?6:day.getDay()-1;
+      CalendarActions.setToday(day);
+      this.setState({ clickedDay: day });
+    }
   }
 
 
@@ -62,7 +64,7 @@ export default class Header extends React.Component {
       let thisMonth = this.MonthDays[thisDate.getMonth()].substring(0,3);
       x++;
       //Working with theoffset
-      return <div class={'dayTitle'+((this.state.clickedDay==thisDayComp)?' active':'')} key={x} onMouseOver={() => this.filterDay(thisDate)}><div class="dayTop">{thisDay} {thisMonth}<span class="articleDashSchedule"></span></div><span class="dayBottom">{key}</span></div>
+      return <div class={'dayTitle'+((this.state.clickedDay==thisDayComp)?' active':'')} key={x} onMouseOver={this.filterDay(thisDate)}><div class="dayTop">{thisDay} {thisMonth}<span class="articleDashSchedule"></span></div><span class="dayBottom">{key}</span></div>
     })
 
 
