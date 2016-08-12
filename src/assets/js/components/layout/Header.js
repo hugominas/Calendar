@@ -17,7 +17,7 @@ export default class Header extends React.Component {
   constructor() {
     super()
     this.state = {
-      collapsed: true
+      clickedDay: new Date().getDay()-1
     };
     this.getToday()
     this.getWeekDays();
@@ -39,9 +39,11 @@ export default class Header extends React.Component {
     this.state.today=CalendarStore.getToday();
   }
   filterDay(day) {
+    //CHECK IF ITS ON DAY METHOD TO AVOID MEMORY LLEACK
+    //fix for sunday offest
+    day=((day.getDay())==0)?6:day.getDay()-1;
     CalendarActions.setToday(day);
-    console.log(day)
-    this.setState({ today: day });
+    this.setState({ clickedDay: day });
   }
 
 
@@ -49,16 +51,18 @@ export default class Header extends React.Component {
     const { location } = this.props.location
     const { collapsed } = this.state;
     //console.log(Moment().add({day:1}));
-    const currWeekDay = new Date();
     let x = 0;
     const headerTitle = this.weekDays.map((key) => {
-      let today  = (x-this.state.today)+1;
+      //ofset to start on monday
+      let thisDayComp=x;
+      let today  = (thisDayComp-this.state.today)+1;
       let thisDate  = new Date().addDays(today);
       let thisDay   = thisDate.getDate();
       thisDay = ((''+thisDay).length==1)?'0'+thisDay:thisDay;
       let thisMonth = this.MonthDays[thisDate.getMonth()].substring(0,3);
       x++;
-      return <div class={'dayTitle'+((today==0)?' active':'')} key={x} onClick={() => this.filterDay(today+3)}><div class="dayTop">{thisDay} {thisMonth}<span class="articleDashSchedule"></span></div><span class="dayBottom">{key}</span></div>
+      //Working with theoffset
+      return <div class={'dayTitle'+((this.state.clickedDay==thisDayComp)?' active':'')} key={x} onMouseOver={() => this.filterDay(thisDate)}><div class="dayTop">{thisDay} {thisMonth}<span class="articleDashSchedule"></span></div><span class="dayBottom">{key}</span></div>
     })
 
 

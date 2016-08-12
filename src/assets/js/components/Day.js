@@ -1,8 +1,8 @@
 import React from "react";
 
 import ClassesLine from "./ClassesLine";
-import CalendarStore from "../stores/CalendarStore";
 import * as CalendarActions from "../actions/CalendarActions";
+import CalendarStore from "../stores/CalendarStore";
 
 Date.prototype.addDays = function(days) {
     this.setDate(this.getDate() + parseInt(days));
@@ -11,10 +11,20 @@ Date.prototype.addDays = function(days) {
 
 export default class Day extends React.Component {
 
-  constructor(props) {
+  constructor() {
     super();
+    this.state = {
+      today: new Date().getDay()-2
+    };
     this.getWeekDays();
     this.getTitleTable();
+  }
+  componentWillMount() {
+    CalendarStore.on("change", this.getToday.bind(this));
+  }
+
+  componentWillUnmount() {
+    CalendarStore.removeListener("change", this.getToday.bind(this));
   }
   getWeekDays(){
     this.weekDays=CalendarStore.getWeekDays();
@@ -22,6 +32,11 @@ export default class Day extends React.Component {
   getTitleTable(){
     this.TitleTable=CalendarStore.getTitleTable();
   }
+  getToday(){
+    let today = CalendarStore.getToday()+1;
+    this.state.today=today;
+  }
+
   render() {
     let i=0;
     const currWeekDay = new Date();
@@ -32,7 +47,7 @@ export default class Day extends React.Component {
               Object.keys(this.props.classes[key]).map((k) => {
                 //CHECK IF REPEATERS BELONG TO THE DAY
                 let today  = (i-currWeekDay.getDay())+1;
-                if(today==0){
+                if(today+5==this.state.today){
                   let thisDate  = new Date().addDays(today);
                   if(new Date(this.props.classes[key][k].startDate)>thisDate || thisDate<new Date(this.props.classes[key][k].endDate)){
                     let uniqueKey=Math.floor((Math.random() * 1000) + 1);

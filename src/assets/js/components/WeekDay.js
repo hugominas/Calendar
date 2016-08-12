@@ -14,10 +14,12 @@ export default class WeekDay extends React.Component {
   constructor(props) {
     super();
     this.getWeekDays();
+
   }
   getWeekDays(){
     this.weekDays=CalendarStore.getWeekDays();
   }
+
   render() {
     let i=0;
     const currWeekDay = new Date();
