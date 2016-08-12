@@ -47,7 +47,8 @@ class CalendarStore extends EventEmitter {
   }
 
   getNigth() {
-    const nigthClasses = Object.keys(this.classes).map((key) => {this.classes[key].map((ele) => {ele.hour=ele.hour.slice(0, 2)+':'+ele.hour.slice(2, 4)}); return (parseInt(key) >= 1800 && parseInt(key) < 2300)?this.classes[key]:false;})
+    let idAula=0;
+    const nigthClasses = Object.keys(this.classes).map((key) => {this.classes[key].map((ele) => {ele.id=idAula;idAula++;ele.hour=ele.hour.slice(0, 2)+':'+ele.hour.slice(2, 4)}); return (parseInt(key) >= 1800 && parseInt(key) < 2300)?this.classes[key]:false;})
     return nigthClasses;
   }
 

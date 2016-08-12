@@ -32,8 +32,8 @@ export default class WeekDay extends React.Component {
                 let today  = (i-currWeekDay.getDay())+1;
                 let thisDate  = new Date().addDays(today);
                 if(new Date(this.props.classes[key][k].startDate)>thisDate || thisDate<new Date(this.props.classes[key][k].endDate)){
-                  let uniqueKey=Math.floor((Math.random() * 1000) + 1);
-                  (typeof this.props.classes[key][k].repeat !=='undefined' && this.props.classes[key][k].repeat.indexOf(i)!==-1)?prop.push(<ClassesBlock key={uniqueKey} {... this.props.classes[key][k]}/>):false;
+                  //let uniqueKey=Math.floor((Math.random() * 1000) + 1);
+                  (typeof this.props.classes[key][k].repeat !=='undefined' && this.props.classes[key][k].repeat.indexOf(i)!==-1)?prop.push(<ClassesBlock key={this.props.classes[key][k].id} {... this.props.classes[key][k]}/>):false;
                 }
 
               });

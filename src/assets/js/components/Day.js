@@ -50,8 +50,8 @@ export default class Day extends React.Component {
                 if(today+5==this.state.today){
                   let thisDate  = new Date().addDays(today);
                   if(new Date(this.props.classes[key][k].startDate)>thisDate || thisDate<new Date(this.props.classes[key][k].endDate)){
-                    let uniqueKey=Math.floor((Math.random() * 1000) + 1);
-                    (typeof this.props.classes[key][k].repeat !=='undefined' && this.props.classes[key][k].repeat.indexOf(i)!==-1)?prop.push(<ClassesLine key={uniqueKey} {... this.props.classes[key][k]}/>):false;
+                    //let uniqueKey=Math.floor((Math.random() * 1000) + 1);
+                    (typeof this.props.classes[key][k].repeat !=='undefined' && this.props.classes[key][k].repeat.indexOf(i)!==-1)?prop.push(<ClassesLine key={this.props.classes[key][k].id} {... this.props.classes[key][k]}/>):false;
                   }
                 }
 
