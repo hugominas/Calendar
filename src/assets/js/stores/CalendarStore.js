@@ -4,15 +4,15 @@ import dispatcher from "../dispatcher";
 class CalendarStore extends EventEmitter {
   constructor() {
     super()
-    this.defaults = window.defaultClass;
+    this.defaults   = window.defaultClass;
     this.defaults.schedule=this.defaults.path+'/assets/css/schedule.json';
     this.defaults.filters=this.defaults.path+'/assets/css/filters.json';
-    this.calendar = {morning:{},afternoon:{},nigth:{}};
+    this.calendar   = {morning:{},afternoon:{},nigth:{}};
     this.dayTitleTable=['Aula','Hora','Local','Categoria','Clube'];
-    this.weekDays=['Monday','Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    this.weekDays   =['Monday','Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     this.monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    this.filters=[];
-    this.classes ={}
+    this.filters    ={};
+    this.classes    ={}
     this.selectedDay = new Date().getDay();
   }
 
@@ -37,6 +37,9 @@ class CalendarStore extends EventEmitter {
   }
   getMonthNames() {
     return this.monthNames;
+  }
+  getFilters() {
+    return this.filters;
   }
   getAll() {
     return this.calendar = {
@@ -66,6 +69,11 @@ class CalendarStore extends EventEmitter {
     switch(action.type) {
       case 'RECEIVE_CLASSES': {
         this.classes = action.classes
+        this.emit("change");
+        break;
+      }
+      case 'RECEIVE_FILTERS': {
+        this.filters = action.filters
         this.emit("change");
         break;
       }

@@ -3,51 +3,62 @@ import { Link, IndexLink } from "react-router";
 
 import ClassesBlock from "../ClassesBlock";
 import * as CalendarActions from "../../actions/CalendarActions";
+import CalendarStore from "../../stores/CalendarStore";
 
 
 export default class Filters extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super();
+    CalendarActions.reloadFilters();
+    this.getFilters = this.getFilters.bind(this);
     this.state = {
-      collapsed: true,
+      filters: CalendarStore.getFilters(),
     };
   }
+  componentWillMount() {
+    CalendarStore.on("change", this.getFilters);
+  }
 
-  toggleCollapse() {
-    const collapsed = !this.state.collapsed;
-    this.setState({collapsed});
+  componentWillUnmount() {
+    CalendarStore.removeListener("change", this.getFilters);
+  }
+
+  getFilters() {
+    this.setState({
+      filters: CalendarStore.getFilters(),
+    });
+  }
+
+  reloadFilters() {
+    CalendarActions.reloadFilters();
   }
 
   render() {
 
     const { location } = this.props
-    const { collapsed } = this.state;
-    //TEMP
-    const featuredClass = this.props.location.pathname === "/" ? "active" : "";
-    const archivesClass = this.props.location.pathname.match(/^\/favorites/) ? "active" : "";
-    const settingsClass = this.props.location.pathname.match(/^\/settings/) ? "active" : "";
-    const navClass = collapsed ? "collapse" : "";
-
+    console.log(this.state.filters)
+    let currentView = 'Weekly';
+    if(location.pathname.match(/daily/)){
+      currentView = 'Daily';
+    }
     return (
 
       <div class="section group scheduleFilters">
         <div class="col span_2_of_12 calendarMode">
           <p class="style">VIEW STYLE</p>
           <div class="weekly">
-            <div class="icon active"></div>
-            <Link to="weekly" onClick={this.toggleCollapse.bind(this)}>Weekly</Link>
+            <Link to="weekly" class="icon active"></Link>
           </div>
           <div class="daily">
-            <div class="icon"></div>
+            <Link to="daily" class="icon"></Link>
           </div>
-          <Link to="daily" onClick={this.toggleCollapse.bind(this)}>Daily</Link>
-          <p class="type">WEEKLY</p>
+          <p class="type">{currentView}</p>
 
         </div>
         <div class="col span_3_of_12 gymLocation">
           <p>CHOOSE A GYM</p>
           <div class="searchGym">
-            <input type="text" class="gymInput" autocomplete="on" />
+            <input type="text" class="gymInput"  />
           </div>
           <div class="optionsGym">
             <h3>Amadora</h3>
@@ -76,7 +87,7 @@ export default class Filters extends React.Component {
         <div class="col span_3_of_12 gymActivities">
           <p>FILTER ACTIVITIES</p>
           <div class="searchClass">
-            <input type="text" class="classInput" autocomplete="on"/>
+            <input type="text" class="classInput" />
           </div>
           <div class="optionsClass">
             <h3>Dance</h3>
