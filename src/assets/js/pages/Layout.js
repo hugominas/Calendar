@@ -5,11 +5,10 @@ import Filters from "../components/layout/Filters";
 import Calendar from "../components/layout/Calendar";
 import Header from "../components/layout/Header";
 
-
-//import Filters from "../components/layout/Filters";
 //import * as CalendarActions from "../actions/CalendarActions";
 
 export default class Layout extends React.Component {
+
   render() {
     const { location } = this.props;
     return (

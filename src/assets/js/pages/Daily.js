@@ -13,7 +13,7 @@ export default class Daily extends React.Component {
     return (
       <div>
         <Filters location={location} />
-        <div class="weeklySchedule section group">
+        <div class="dailySchedule section group">
           <Header location={location} />
           <Calendar location={location} />
         </div>

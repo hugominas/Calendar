@@ -5,8 +5,8 @@ class CalendarStore extends EventEmitter {
   constructor() {
     super()
     this.defaults   = window.defaultClass;
-    this.defaults.schedule=this.defaults.path+'/assets/css/schedule.json';
-    this.defaults.filters=this.defaults.path+'/assets/css/filters.json';
+    this.defaults.schedule=this.defaults.path+'/schedule.json';
+    this.defaults.filters=this.defaults.path+'/filters.json';
     this.calendar   = {morning:{},afternoon:{},nigth:{}};
     this.dayTitleTable=['Aula','Hora','Local','Categoria','Clube'];
     this.weekDays   =['Monday','Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -72,12 +72,13 @@ class CalendarStore extends EventEmitter {
   handleActions(action) {
     switch(action.type) {
       case 'RECEIVE_CLASSES': {
-        this.classes = action.classes
+        this.classes = action.classes;
+        this.getAll();
         this.emit("change");
         break;
       }
       case 'RECEIVE_FILTERS': {
-        this.filters = action.filters
+        this.filters = action.filters;
         this.emit("change");
         break;
       }
@@ -105,8 +106,6 @@ class CalendarStore extends EventEmitter {
         this.emit("change");
         break;
       }
-
-
     }
   }
 

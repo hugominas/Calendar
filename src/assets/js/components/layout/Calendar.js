@@ -49,14 +49,12 @@ export default class Calendar extends React.Component {
         classes: (calendars[key]||[]),
         period:key
       }
-      //CHECK IF ITS VISIBLE
-      if(this.state.times.indexOf(key)!==-1){
+      //CHECK I
         if(location.pathname.match(/weekly/)){
-          return <WeekDay key={a} {... props}/>;
+          return <div className={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'}><WeekDay key={a} {... props}/></div>;
         }else{
-          return <Day key={a} {... props}/>;
+          return <div className={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'}><Day key={a} {... props}/></div>;
         }
-      }
     });
 
     return (

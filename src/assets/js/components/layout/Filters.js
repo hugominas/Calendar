@@ -32,7 +32,6 @@ export default class Filters extends React.Component {
   }
   updateViewTime(time) {
       let thisPosition=this.state.time.indexOf(time);
-      console.log(this.state.time, time,thisPosition);
       (thisPosition!==-1)?this.state.time.splice(thisPosition,1):this.state.time.push(time);
       CalendarActions.setViewTimes(this.state.time);
   }
@@ -91,18 +90,6 @@ export default class Filters extends React.Component {
               <input type="checkbox" id="vitaTejo" /><label for="vitaTejo"><span></span>Dolce Vita Tejo</label>
               </li>
             </ul>
-            <h3>Centro</h3>
-            <ul>
-              <li><input type="checkbox" id="aveiro"/><label for="aveiro"><span></span>Aveiro</label></li>
-              <li><input type="checkbox" id="coimbra"/><label for="coimbra"><span></span>Coimbra</label></li>
-            </ul>
-            <h3>Linha</h3>
-            <ul>
-              <li><input type="checkbox" id="alges"/><label for="alges"><span></span>Algés</label></li>
-              <li><input type="checkbox" id="cascais"/><label for="cascais"><span></span>Cascais</label></li>
-              <li><input type="checkbox" id="antigravidade"/><label for="antigravidade"><span></span>Estúdio Antigravidade</label></li>
-              <li><input type="checkbox" id="miraflores"/><label for="miraflores"><span></span>Miraflores</label></li>
-            </ul>
             <div class="resetChoises">
               <span>RESET CHOISES</span>
             </div>
@@ -120,11 +107,6 @@ export default class Filters extends React.Component {
               <li><input type="checkbox" id="bodyjam"/><label for="bodyjam"><span></span>Bodyjam</label></li>
               <li><input type="checkbox" id="kizomba"/><label for="kizomba"><span></span>Kizomba</label></li>
               <li><input type="checkbox" id="zumba"/><label for="zumba"><span></span>Zumba</label></li>
-            </ul>
-            <h3>Martial Arts</h3>
-            <ul>
-              <li><input type="checkbox" id="kickboxing"/><label for="kickboxing"><span></span>Kickboxing</label></li>
-              <li><input type="checkbox" id="warrior"/><label for="warrior"><span></span>Warrior</label></li>
             </ul>
             <div class="allClasses">
               <span>VIEW ALL CLASSES</span>
