@@ -93,7 +93,7 @@
     width: 26px;
     height: 26px;
     float: right;
-    margin-right: 5px;
+    margin-right: 5px; 
 }
 
 .daily {
@@ -196,18 +196,21 @@ p.type {
 }
 
 .optionsGym {
+    width: 244px;
+    z-index: 1;
+    position: absolute;
     display: none;
-    width: 100%;
     height: 304px;
     padding-top: 8px;
     background-color: #e5e0ce;
-    /*  background-color: var(--pinkish-grey);*/
     box-shadow: 0 30px 50px 0 rgba(0, 0, 0, 0.29);
 }
 
 .optionsClass {
+    width: 244px;
+    z-index: 1;
+    position: absolute;
     display: none;
-    width: 100%;
     height: 242px;
     padding-top: 8px;
     background-color: #e5e0ce;
@@ -472,11 +475,23 @@ You have some examples down here.
     background-color: #00ade0;
     border-bottom:0;
 }
+.classColorDetails.classColorAqua {
+    background-color: #00ade0;
+    border-bottom:0;
+}
 .classColor.classColorMartialArts{
     border-bottom:0;
     background-color:#f98d10;
 }
-.classColor.classColorMindBody{
+.classColorDetails.classColorMartialArts{
+    border-bottom:0; 
+    background-color:#f98d10;
+}
+.classColor.classColorMindBody{ 
+    border-bottom:0;
+    background-color:#fbcd00;
+}
+.classColorDetails.classColorMindBody{ 
     border-bottom:0;
     background-color:#fbcd00;
 }
@@ -484,13 +499,25 @@ You have some examples down here.
     border-bottom:0;
     background-color:#f12e15;
 }
+.classColorDetails.classColorConditioning{
+    border-bottom:0;
+    background-color:#f12e15;
+}
 .classColor.classColorPerformance{
      border-bottom:0;
-    background-color:#005a9a;
+    background-color:#005a9a; 
+}
+.classColorDetails.classColorPerformance{
+     border-bottom:0;
+    background-color:#005a9a; 
 }
 .classColor.classColorDance{
     border-bottom:0;
-  background-color:#8b4a97;
+  background-color:#8b4a97; 
+}
+.classColorDetails.classColorDance{
+    border-bottom:0;
+  background-color:#8b4a97; 
 }
 .vertical-text-morning {
     background: url('../images/morningBeje.png');
@@ -568,26 +595,39 @@ You have some examples down here.
     background-color: #ffffff;
 }
 
-.classBlockDetails {
-    padding: 13px 0 0 31px;
-    z-index: 2;
-    position: absolute;
+.classBlock.active {
+    padding: 6px 0 0 31px;
     width: 119px;
-    display: none;
-    height: 93px;
+    height: 85px;
     border-radius: 4px;
     background-color: #ffffff;
-    left: 421px;
-    top: 560px;
+    margin-top: -16px;
 }
-
+.classBlock.active .placeDetails,.classBlock.active a.linkDetails{
+    display: block;
+}
+.classBlock.active .hourTime{
+    opacity: 0.4;
+    font-family: 'Lato-Bold';
+    font-size: 0.846em;
+    color: #081d26;
+    margin-bottom: 4px;
+}
+.classBlock.active .className{
+    font-family: 'Lato-Bold';
+    font-size: 1.154em;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #081d26;
+    margin-bottom: -4px;
+}
 .hourDetails {
     display: block;
     opacity: 0.4;
     font-family: 'Lato-Bold';
     font-size: 0.846em;
     color: #081d26;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .classDetails {
@@ -600,15 +640,17 @@ You have some examples down here.
     margin-bottom: -4px;
 }
 
-.placeDetails {
+.classBlock span.placeDetails {
     text-transform: uppercase;
-    display: block;
+    display: none;
     font-family: 'Lato-Bold';
     opacity: 0.4;
     font-size: 0.846em;
     color: #081d26;
 }
-
+a.linkDetails {
+    display: none;
+}
 .classBlockDetails a.linkDetails {
     text-transform: uppercase;
     display: block;
@@ -616,6 +658,7 @@ You have some examples down here.
     font-size: 0.846em;
     letter-spacing: 0.4px;
     color: #b3a26c;
+
 }
 
 .dailyClass {
@@ -826,15 +869,81 @@ You have some examples down here.
 .dayTime.section.group {
     margin: 0 auto
 }
-
-
+/*NEW CALENDAR*/
+.scheduleProfs.section.group{
+    width: 100%;
+    padding-left: 10%;
+    margin-bottom: 25px;
+    margin-top: 30px;
+}
+.scheduleProfs .profs{
+    width: 20%;
+    margin-left: 1%;
+    float: left;
+}
+.scheduleProfs .profs span{
+    width: 10px;
+    height: 10px;
+    float: left;
+}
+.mainSchedule{
+    width: 100%;
+  border-radius: 3px;
+  border: solid 1px #e5e0ce;
+}
+.timeSche{
+    float: left;
+    width: 5%;
+}
+.dayTitle{
+    width: 12%;
+    float: left;
+}
+.daySche span{
+    display: block;
+    text-align: center;
+}
+.daysSche .daySche span.days{
+  font-family: 'Lato-Bold';
+  font-size: 1.077em;
+  color: #565656;
+} 
+.profColor{    
+    width: 15px;
+    height: 15px;
+    border-radius: 4px;
+    margin-top: 1px;
+    float: left;
+    margin-right: 5px;
+}
+.profColor.blue{
+background-color: #588aa0
+}
+.profColor.green{
+background-color: #70cdb2
+}
+.profColor.orange{
+background-color: #eda572
+}
+.profColor.yellow{
+background-color: #d2d65f
+    
+}
+.profColor.purple{
+background-color: #b286ba
+    
+}
+.scheduleProfs .prof{
+    float: left;
+    width: 15%;
+}
 @media screen and (max-width:1279px) {
     .schedule {
         width: 100%;
     }
     .dayTime{
       width: 90%;
-    }
+    } 
     .searchGym, .searchClass {
     background-position: 196px;
   }
@@ -859,5 +968,90 @@ You have some examples down here.
     }
     .dayBottom{
       font-size: 0.985em;
+    }
+}
+@media screen and (max-width:768px) {
+    .classIntensity{
+        display: none;
+    }
+    .searchGym, .searchClass {
+        background-position: 200px;
+    }
+    .searchGym input:valid, .searchClass input:valid {
+        color: #565656;
+        font-family: 'Lato-Bold';
+        width: 70%;
+    }
+    .page-template-template-schedule #wrapper .wrapperBody .sectionPage {
+        margin:0;
+    } 
+    .sectionPage .section.ScheduleDays {
+        padding:0;
+    }
+    .sectionPage .section.weeklySchedule {
+        border-radius: 0;
+        padding:0;
+    }
+    .page-template-template-schedule #wrapper .wrapperBody .sectionPage .maincontent {
+        width: 100%;
+    }
+    .page-template-template-schedule .sectionPage .section.scheduleFilters{
+        padding: 2%;
+    }
+    .page-template-template-schedule .span_2_of_12 {
+        width: 16.33%;
+    }
+    .page-template-template-schedule .span_3_of_12 {
+        width: 30.8%;
+    }
+    .dayTime .afternoon {
+        margin-right: 19px;
+    }
+    .dayTime .morning {
+        margin-right: 15px;
+    }
+    .dayTitle {
+        width: 13.2%;
+    }
+    .scheduleTime{
+        display: none;
+    } 
+    .sectionPage .section.weekClasses {
+        padding:1%;
+    }
+    .scheduleBorder {
+        width: 98%;
+        margin-right: 1%;
+        margin-bottom: 0;
+    }
+    .dailySchedule {
+        border-radius: 0px;
+    }
+    .page-template-template-schedule .section.dailySchedule{
+        padding: 0;
+    } 
+    .dailyClasses.section.group{
+        padding: 1%; 
+    }
+    .vertical-text-afternoon,.vertical-text-morning,.vertical-text-evening  {
+        display: block;
+        width: 100%;
+    height: 50px;
+    background-position: 7px;
+    }
+    .dailySchedule .scheduleBorder {
+        margin-bottom: 0;
+    }
+    .scheduleTime .eveningSche,.scheduleTime .morningSche,.scheduleTime .afternoonSche{
+        display: none;
+    }
+    .dailyClass {
+    width: 100%;
+    }
+    .dailySchedule .dailyClassCorp.section {
+        padding: 1%;
+    }
+    .dailySchedule  .dailyClassHeader.section {
+        padding: 1%;
     }
 }

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link, IndexLink } from "react-router";
 
 import ClassesBlock from "../ClassesBlock";
 import * as CalendarActions from "../../actions/CalendarActions";
@@ -17,54 +16,53 @@ export default class Header extends React.Component {
   constructor() {
     super()
     this.state = {
-      clickedDay: new Date().getDay()-1
+      clickedDay: CalendarStore.getToday(),
+      weekDays: CalendarStore.getWeekDays(),
+      monthNames: CalendarStore.getMonthNames(),
     };
-    this.getToday()
-    this.getWeekDays();
-    this.getMonthNames();
-  }
-  getWeekDays(){
-    this.weekDays=CalendarStore.getWeekDays();
+
   }
 
-  getMonthNames(){
-    this.MonthDays=CalendarStore.getMonthNames();
+  componentWillMount() {
+    CalendarStore.on("change", this.getToday.bind(this));
   }
 
-  toggleCollapse() {
-    const collapsed = !this.state.collapsed;
-    this.setState({collapsed});
+  componentWillUnmount() {
+    CalendarStore.removeListener("change", this.getToday.bind(this));
   }
+
+
   getToday(){
-    this.state.today=CalendarStore.getToday();
+    this.setState({
+      clickedDay: CalendarStore.getToday(),
+      weekDays: CalendarStore.getWeekDays(),
+      monthNames: CalendarStore.getMonthNames(),
+    });
   }
+
   filterDay(day) {
     return ()=> {
       //CHECK IF ITS ON DAY METHOD TO AVOID MEMORY LLEACK
       //fix for sunday offest
       day=((day.getDay())==0)?6:day.getDay()-1;
       CalendarActions.setToday(day);
-      this.setState({ clickedDay: day });
     }
   }
 
 
   render() {
-    const { location } = this.props.location
-    const { collapsed } = this.state;
-    //console.log(Moment().add({day:1}));
     let x = 0;
-    const headerTitle = this.weekDays.map((key) => {
+    const headerTitle = this.state.weekDays.map((key) => {
       //ofset to start on monday
       let thisDayComp=x;
-      let today  = (thisDayComp-this.state.today)+1;
+      let today     = (thisDayComp-new Date().getDay())+1;
       let thisDate  = new Date().addDays(today);
       let thisDay   = thisDate.getDate();
-      thisDay = ((''+thisDay).length==1)?'0'+thisDay:thisDay;
-      let thisMonth = this.MonthDays[thisDate.getMonth()].substring(0,3);
+      thisDay       = ((''+thisDay).length==1)?'0'+thisDay:thisDay;
+      let thisMonth = this.state.monthNames[thisDate.getMonth()].substring(0,3);
       x++;
       //Working with theoffset
-      return <div class={'dayTitle'+((this.state.clickedDay==thisDayComp)?' active':'')} key={x} onMouseOver={this.filterDay(thisDate)}><div class="dayTop">{thisDay} {thisMonth}<span class="articleDashSchedule"></span></div><span class="dayBottom">{key}</span></div>
+      return <div class={'dayTitle'+((this.state.clickedDay==thisDayComp)?' active':'')} key={x} onMouseOver={this.filterDay(thisDate)}><div class="activeCircle"></div><div class="dayTop">{thisDay} {thisMonth}<span class="articleDashSchedule"></span></div><span class="dayBottom">{key}</span></div>
     })
 
 

@@ -2117,7 +2117,12 @@ button.vjs-play-control.vjs-control.vjs-button.vjs-playing:before {
 }
 .payment_method_cheque{
     padding: 1em;
-    border: 1px solid rgba(0,0,0,.1);
+    border-top: 1px solid rgba(0,0,0,.1);
+    border-left: 1px solid rgba(0,0,0,.1);
+    border-right: 1px solid rgba(0,0,0,.1);
+}
+.payment_method_paypal{
+    border-bottom: 1px solid rgba(0,0,0,.1);
 }
 .woocommerce-checkout #payment div.payment_box {
     margin: 0;
@@ -2786,9 +2791,10 @@ a.classColorPerformance:after{
   right: 0;
   top: 0;
   bottom: 0;
-  width: 500px;
+  width: 400px;
   background: #333333;
   z-index: 999;
+
 }
 #overlayCart{
   display: none;
@@ -2799,12 +2805,21 @@ a.classColorPerformance:after{
 }
 #overlayCart .cartwidget-panel-prodList{
   height: 100%;
-  overflow-y: scroll;
+overflow-y: auto;
+width: 85%;
+margin: 0 auto;
+margin-top: 4%;
 }
 #overlayCart a.btnCartPanel {
     width: 100%;
     display: block;
     padding: 20px;
+}
+#overlayCart .cartwidget-panel-header{
+  color: #ffffff;
+  text-align: right;
+  width: 85%;
+  margin: 0 auto;
 }
 .productDetailPage .sectionProduct{
     padding: 3.4% 0 4%;
@@ -3135,10 +3150,64 @@ form.checkout.woocommerce-checkout .col2-set .col-2{
 .minus{
   width: 0;
   height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  display: inline-block;
+  border-right:8px solid #282828;
+}
+.plus {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  display: inline-block;
+  border-left: 8px solid #282828;
+}
+.quantity{
+    display: inline-block;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.woocommerce .quantity .qty {
+    width: 1.2em;
+    text-align: center;
+}
+.woocommerce .cart input.shooping-button {
+  float: left;
+  color: #282828;
+  width: 100%;
+  border: 1px solid #aaa;
+  padding: 2% 0;
+  border-radius: 0;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  font-family: 'Lato-Regular', sans-serif;
+}
+.woocommerce .cart input.button-update {
+  float: left;
+  color: #282828;
+  width: 100%;
+  border: 1px solid #aaa;
+  padding: 2% 0;
+  border-radius: 0;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  font-family: 'Lato-Regular', sans-serif;
+}
 
-  border-right:10px solid #282828; 
+a.checkout-button {
+  display: block;
+  text-align: center;
+  font-size: 1.2em;
+  margin-right: 0;
+  background-color: #000 !important;
+  border-radius: 0 !important;
+}
+.woocommerce .cart input.shooping-button:hover {
+  border: 1px solid #282828;
 }
 .woocommerce table.woocommerce-checkout-review-order-table td.product-name {
     width: auto;
@@ -4742,58 +4811,7 @@ div.cf_widget {
 /*--------------------------------------------------------
 3 Filtros
 ---------------------------------------------------------*/
-.scheduleIntro {
-    padding: 0;
-}
-.section.group.scheduleFilters{
-    margin:0 auto;
-    width: 80%;
-    margin-top: 68px;
-}
-.weekly{
-    width: 50%;
-    float: left;
-}
-.weekly .icon{
-    background: url('../images/calendarIcon.png') no-repeat;
-    background-position: center center;
-    width: 26px;
-    height: 26px;
-    float: right;
-    margin-right: 5px;
-}
-.daily{
-    width: 50%;
-    float: left;
-}
-.scheduleFilters div p{
-  font-family: 'Lato-Regular', sans-serif;
-    font-size: 1.077em;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: #3a3a3b;
-}
-.calendarMode p.type{
-    margin-top: 23px;
-    display: block;
-    float: left;
-    width: 100%;
-    text-align: center;
-}
-.calendarMode p.style{
-margin-top: 0;
-display: block;
-text-align: center;
-margin-bottom: 23px;
-}
-.daily .icon{
-    background: url('../images/calendaricon2.png') no-repeat;
-    background-position: center center;
-    width: 26px;
-    height: 26px;
-    float: left;
-    margin-left: 5px;
-}
+
 @media screen and (min-width:1280px) {
     .maincontent{
         max-width: 1200px;

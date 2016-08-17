@@ -7,29 +7,56 @@ export function getCalendar() {
     type: "GET_CALENDAR"
   });
 }
-export function filterCalendar(filter) {
+
+export function updateIntensity(inten) {
   dispatcher.dispatch({
-    type: "GET_CALENDAR",
-    filter,
+    type: "SET_INTENCITY",
+    inten
   });
 }
+
 export function getFilters() {
   dispatcher.dispatch({
     type: "GET_FILTERS"
   });
 }
+
 export function setToday(today) {
   dispatcher.dispatch({
     type: "SET_TODAY",
     today
   });
 }
+
 export function setViewTimes(times) {
   dispatcher.dispatch({
     type: "SET_TIMES",
     times
   });
 }
+
+export function setActiveClass(classId) {
+  dispatcher.dispatch({
+    type: "SET_ACTIVECLASS",
+    classId
+  });
+}
+
+export function updateView(view) {
+  dispatcher.dispatch({
+    type: "SET_VIEW",
+    view
+  });
+}
+
+export function updateClubFilter(clubid) {
+  dispatcher.dispatch({
+    type: "SET_CLUBFILTER",
+    clubid
+  });
+}
+
+
 
 export function reloadFilters() {
   dispatcher.dispatch({type: "FETCH_FILTERS"});

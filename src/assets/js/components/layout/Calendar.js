@@ -1,5 +1,4 @@
 import React from "react";
-import { Link, IndexLink } from "react-router";
 
 import ClassesBlock from "../ClassesBlock";
 import CalendarStore from "../../stores/CalendarStore";
@@ -17,8 +16,10 @@ export default class Calendar extends React.Component {
     this.state = {
       calendars: CalendarStore.getAll(),
       times: CalendarStore.getTimes(),
+      view: CalendarStore.getView()
     };
   }
+
   componentWillMount() {
     CalendarStore.on("change", this.getCalendar);
   }
@@ -30,7 +31,8 @@ export default class Calendar extends React.Component {
   getCalendar() {
     this.setState({
       calendars: CalendarStore.getAll(),
-      times: CalendarStore.getTimes()
+      times: CalendarStore.getTimes(),
+      view: CalendarStore.getView()
     });
   }
 
@@ -40,20 +42,19 @@ export default class Calendar extends React.Component {
 
   render() {
     const  calendars = this.state.calendars;
-    const { location } = this.props;
     // Visit non-inherited enumerable keys
     let a=0;
     const CalendarComponents = Object.keys(calendars).map((key) => {
       a++;
       let props = {
         classes: (calendars[key]||[]),
-        period:key
+        period: key
       }
       //CHECK I
-        if(location.pathname.match(/weekly/)){
-          return <div className={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'}><WeekDay key={a} {... props}/></div>;
+        if(this.state.view == 'weekly'){
+          return <WeekDay className={this.state.times.indexOf(key)!==-1 ? 'hidden' : ''} key={a} {... props}/>;
         }else{
-          return <div className={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'}><Day key={a} {... props}/></div>;
+          return <Day className={this.state.times.indexOf(key)!==-1 ? 'hidden' : ''} key={a} {... props}/>;
         }
     });
 

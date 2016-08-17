@@ -9,13 +9,16 @@ import CalendarStore from "../../stores/CalendarStore";
 export default class Filters extends React.Component {
   constructor(props) {
     super();
-    CalendarActions.reloadFilters();
+    this.reloadFilters();
     this.getFilters = this.getFilters.bind(this);
     this.state = {
       filters: CalendarStore.getFilters(),
+      intensity: CalendarStore.getIntensity(),
       time:CalendarStore.getTimes(),
+      view:CalendarStore.getView(),
     };
   }
+
   componentWillMount() {
     CalendarStore.on("change", this.getFilters);
   }
@@ -27,16 +30,33 @@ export default class Filters extends React.Component {
   getFilters() {
     this.setState({
       filters: CalendarStore.getFilters(),
-      time:CalendarStore.getTimes()
+      intensity: CalendarStore.getIntensity(),
+      time:CalendarStore.getTimes(),
+      view:CalendarStore.getView()
     });
   }
+
   updateViewTime(time) {
       let thisPosition=this.state.time.indexOf(time);
       (thisPosition!==-1)?this.state.time.splice(thisPosition,1):this.state.time.push(time);
       CalendarActions.setViewTimes(this.state.time);
   }
+
+  updateIntensity(inten) {
+      CalendarActions.updateIntensity(inten);
+  }
+
+  updateClubFilter(clubId) {
+    console.log(clubId)
+      CalendarActions.updateClubFilter(clubId);
+  }
+
+  updateView(view) {
+      CalendarActions.updateView(view);
+  }
+
   reloadFilters() {
-    CalendarActions.reloadFilters();
+      CalendarActions.reloadFilters();
   }
 
   render() {
@@ -45,7 +65,8 @@ export default class Filters extends React.Component {
     let currentView = 'Weekly';
     let weekActive = "active"
     let dayActive = ""
-    if(location.pathname.match(/daily/)){
+    //SET TYPE LABEL
+    if(this.state.view=='daily'){
       currentView = 'Daily';
       weekActive = ""
       dayActive = "active"
@@ -55,12 +76,30 @@ export default class Filters extends React.Component {
     let actEve=(this.state.time.indexOf('evening')!==-1)?'active':'';
     let actAft=(this.state.time.indexOf('afternoon')!==-1)?'active':'';
 
+    //SET TIME LABEL
     if(actMor=='active'&&actEve=='active'&&actAft=='active'){fromToTime='07:00 to 23:00';}
     else if(actMor=='active'&&actAft=='active'){fromToTime='07:00 to 19:00';}
     else if(actEve=='active'&&actAft=='active'){fromToTime='12:00 to 23:00';}
     else if(actMor=='active'&&actEve=='active'){fromToTime='07:00 to 23:00';}
     else if(actEve=='active'){fromToTime='19:00 to 23:00';}
     else if(actAft=='active'){fromToTime='12:00 to 19:00';}
+
+    //SET INT label
+    let intLabel=''
+    for(let a=0;a<this.state.intensity;a++){intLabel+='I'}
+
+    //SET CLUBS LIST
+    let localList = '';
+    console.log(this.state.filters)
+    if(this.state.filters.locations){
+      localList = Object.keys(this.state.filters.locations.clubs).map((location)=>{
+        let clublist = Object.keys(this.state.filters.locations.clubs[location]).map((club)=>{
+          let thisId = this.state.filters.locations.clubs[location][club];
+          return <li key={thisId}><input type="checkbox" id={thisId} onChange={()=>this.updateClubFilter(thisId)} /><label for={thisId}><span></span>{this.state.filters.clubs[thisId]}</label></li>;
+        })
+        return <div key={location}><h3>{location}</h3><ul>{clublist}</ul></div>;
+      })
+    }
 
 
 
@@ -70,10 +109,10 @@ export default class Filters extends React.Component {
         <div class="col span_2_of_12 calendarMode">
           <p class="style">VIEW STYLE</p>
           <div class="weekly">
-            <Link to="weekly" class={'icon '+weekActive}></Link>
+            <div class={'icon '+weekActive} onClick={()=>this.updateView('weekly')}></div>
           </div>
           <div class="daily">
-            <Link to="daily" class={'icon '+dayActive}></Link>
+            <div class={'icon '+dayActive} onClick={()=>this.updateView('daily')}></div>
           </div>
           <p class="type">{currentView}</p>
 
@@ -84,12 +123,8 @@ export default class Filters extends React.Component {
             <input type="text" class="gymInput"  />
           </div>
           <div class="optionsGym">
-            <h3>Amadora</h3>
-            <ul>
-              <li>
-              <input type="checkbox" id="vitaTejo" /><label for="vitaTejo"><span></span>Dolce Vita Tejo</label>
-              </li>
-            </ul>
+          {localList}
+
             <div class="resetChoises">
               <span>RESET CHOISES</span>
             </div>
@@ -116,14 +151,15 @@ export default class Filters extends React.Component {
         <div class="col span_2_of_12 classIntensity">
           <p>INTENSITY</p>
           <div class="intensityLevel group section">
-            <div class="grau1 intensityBlock active"></div>
-            <div class="grau2 intensityBlock active"></div>
-            <div class="grau3 intensityBlock active"></div>
-            <div class="grau4 intensityBlock"></div>
-            <div class="grau5 intensityBlock"></div>
-            <div class="grau6 intensityBlock"></div>
+          <div class={(this.state.intensity>=0)?'first intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(0)}></div>
+          <div class={(this.state.intensity>=1)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(1)}></div>
+          <div class={(this.state.intensity>=2)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(2)}></div>
+          <div class={(this.state.intensity>=3)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(3)}></div>
+          <div class={(this.state.intensity>=4)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(4)}></div>
+          <div class={(this.state.intensity>=5)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(5)}></div>
+
           </div>
-          <p class="type">III</p>
+          <p class="type">{intLabel}</p>
         </div>
         <div class="col span_2_of_12 classTime">
           <p>DAY TIME</p>
