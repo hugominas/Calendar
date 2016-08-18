@@ -15,7 +15,7 @@ class CalendarStore extends EventEmitter {
     this.weekDays     = ['Monday','Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     this.monthNames   = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.filters      = {};
-    this.activeFilters= {intensity:0,clubs:[]};
+    this.activeFilters= {intensity:0,clubs:[],category:[]};
     this.classes      = {};
     this.times        = ['morning','afternoon','evening'];
     this.selectedDay  = new Date().getDay();
@@ -33,6 +33,14 @@ class CalendarStore extends EventEmitter {
 
   getIntensity(){
     return this.activeFilters.intensity;
+  }
+
+  getCLubFilter(){
+    return this.activeFilters.clubs;
+  }
+
+  getActFilter(){
+    return this.activeFilters.category;
   }
 
   updateFilter(filt, val) {
@@ -83,7 +91,14 @@ class CalendarStore extends EventEmitter {
     ele=ele.map((e) => {
       let isValid = e;
       //INTENSITY
-      isValid = (e.intensity==this.activeFilters.intensity || this.activeFilters.intensity==0)?e:false;
+      if(e.intensity!=this.activeFilters.intensity && this.activeFilters.intensity!=0)return false;
+
+      //CLUB
+      if(this.activeFilters.clubs.indexOf(e.club_id)===-1 && this.activeFilters.clubs.length!==0)return false;
+
+      //CAT
+      //console.log(this.activeFilters.category.indexOf(e.class_id),e.club_id,this.activeFilters.category,this.activeFilters.category.length)
+      if(this.activeFilters.category.indexOf(e.class_id)===-1 && this.activeFilters.category.length!==0)return false;
 
       return isValid;
     });
@@ -179,7 +194,7 @@ class CalendarStore extends EventEmitter {
       case "SET_CLUBFILTER": {
         let indexClub = this.activeFilters.clubs.indexOf(action.clubid);
         if(indexClub!==-1){
-          this.activeFilters.club.splice(indexClub, 1);
+          this.activeFilters.clubs.splice(indexClub, 1);
         }else{
           this.activeFilters.clubs.push(action.clubid)
         };
@@ -187,6 +202,32 @@ class CalendarStore extends EventEmitter {
         this.emit("change");
         break;
       }
+      case "SET_CATFILTER": {
+        let indexCat = this.activeFilters.category.indexOf(action.catid);
+        if(indexCat!==-1){
+          this.activeFilters.category.splice(indexCat, 1);
+        }else{
+          this.activeFilters.category.push(action.catid)
+        };
+        this.getAll();
+        this.emit("change");
+        break;
+      }
+
+      case "CLEAR_CLASSESSELECTION": {
+        this.activeFilters.category = [];
+        this.getAll();
+        this.emit("change");
+        break;
+      }
+
+      case "CLEAR_GYMSELECTION": {
+        this.activeFilters.clubs = [];
+        this.getAll();
+        this.emit("change");
+        break;
+      }
+
 
     }
   }

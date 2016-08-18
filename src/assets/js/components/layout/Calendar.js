@@ -52,14 +52,14 @@ export default class Calendar extends React.Component {
       }
       //CHECK I
         if(this.state.view == 'weekly'){
-          return <WeekDay className={this.state.times.indexOf(key)!==-1 ? 'hidden' : ''} key={a} {... props}/>;
+          return <div class={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'} key={a}><WeekDay {... props}/></div>;
         }else{
-          return <Day className={this.state.times.indexOf(key)!==-1 ? 'hidden' : ''} key={a} {... props}/>;
+          return <div class={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'} key={a}><Day {... props}/></div>;
         }
     });
 
     return (
-      <div>
+      <div class={(this.state.view=='weekly')?'weeklyScheduleBottom':'dailyScheduleBottom'+''}>
       {CalendarComponents}
       </div>
     );

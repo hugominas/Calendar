@@ -16,6 +16,10 @@ export default class Filters extends React.Component {
       intensity: CalendarStore.getIntensity(),
       time:CalendarStore.getTimes(),
       view:CalendarStore.getView(),
+      actList:CalendarStore.getActFilter(),
+      clubList:CalendarStore.getCLubFilter(),
+      selectedAct:(CalendarStore.getActFilter().length + ' Activities selected'),
+      selectedClub:(CalendarStore.getCLubFilter().length + ' Clubs selected')
     };
   }
 
@@ -32,7 +36,11 @@ export default class Filters extends React.Component {
       filters: CalendarStore.getFilters(),
       intensity: CalendarStore.getIntensity(),
       time:CalendarStore.getTimes(),
-      view:CalendarStore.getView()
+      view:CalendarStore.getView(),
+      actList:CalendarStore.getActFilter(),
+      clubList:CalendarStore.getCLubFilter(),
+      selectedAct:(CalendarStore.getActFilter().length + ' Activities selected'),
+      selectedClub:(CalendarStore.getCLubFilter().length + ' Clubs selected')
     });
   }
 
@@ -47,9 +55,13 @@ export default class Filters extends React.Component {
   }
 
   updateClubFilter(clubId) {
-    console.log(clubId)
       CalendarActions.updateClubFilter(clubId);
   }
+
+  updateCategoryFilter(catId) {
+      CalendarActions.updateCategoryFilter(catId);
+  }
+
 
   updateView(view) {
       CalendarActions.updateView(view);
@@ -57,6 +69,28 @@ export default class Filters extends React.Component {
 
   reloadFilters() {
       CalendarActions.reloadFilters();
+  }
+
+  showGyms(state){
+    state=(!state)?true:false;
+    this.setState({
+      showGymsToggle: state
+    })
+  }
+
+  showAct(state){
+    state=(!state)?true:false;
+    this.setState({
+      showActToggle: state
+    })
+  }
+
+  resetClasses(){
+    CalendarActions.resetClasses();
+  }
+
+  resetGym(){
+    CalendarActions.resetGym();
   }
 
   render() {
@@ -90,85 +124,95 @@ export default class Filters extends React.Component {
 
     //SET CLUBS LIST
     let localList = '';
-    console.log(this.state.filters)
     if(this.state.filters.locations){
       localList = Object.keys(this.state.filters.locations.clubs).map((location)=>{
         let clublist = Object.keys(this.state.filters.locations.clubs[location]).map((club)=>{
           let thisId = this.state.filters.locations.clubs[location][club];
-          return <li key={thisId}><input type="checkbox" id={thisId} onChange={()=>this.updateClubFilter(thisId)} /><label for={thisId}><span></span>{this.state.filters.clubs[thisId]}</label></li>;
+          return <li key={thisId}><input type="checkbox" checked={(this.state.clubList.indexOf(thisId)!==-1)} id={thisId} onChange={()=>this.updateClubFilter(thisId)} /><label for={thisId}><span></span>{this.state.filters.clubs[thisId]}</label></li>;
         })
         return <div key={location}><h3>{location}</h3><ul>{clublist}</ul></div>;
       })
     }
 
+    //SET Activity LIST
+    let actList = [];
+    let activityCatList = '';
+    if(this.state.filters.class){
+       Object.keys(this.state.filters.class).map((classes)=>{
+         if(!actList.hasOwnProperty(this.state.filters.class[classes].category_name))actList[this.state.filters.class[classes].category_name]=[];
+         this.state.filters.class[classes].id=classes;
+         actList[this.state.filters.class[classes].category_name].push(this.state.filters.class[classes])
+       })
+       let a = 0;
+       activityCatList=Object.keys(actList).map((activity)=>{
+         let activityClassList=Object.keys(actList[activity]).map((classes)=>{
+           a++;
+           return <li key={a+'_classDetail'}><input type="checkbox" checked={(this.state.actList.indexOf(actList[activity][classes].id)!==-1)} id={actList[activity][classes].id} onChange={()=>this.updateCategoryFilter(actList[activity][classes].id)} /><label for={actList[activity][classes].id}><span></span>{actList[activity][classes].name}</label></li>;
+         })
+         return <div key={activity}><h3>{activity}</h3><ul>{activityClassList}</ul></div>;
+       })
 
+    }
 
     return (
 
       <div class="section group scheduleFilters">
         <div class="col span_2_of_12 calendarMode">
-          <p class="style">VIEW STYLE</p>
+          <p class="style animated fadeInLeft">VIEW STYLE</p>
           <div class="weekly">
-            <div class={'icon '+weekActive} onClick={()=>this.updateView('weekly')}></div>
+            <div class={'icon animated fadeInUp '+weekActive} onClick={()=>this.updateView('weekly')}></div>
           </div>
           <div class="daily">
-            <div class={'icon '+dayActive} onClick={()=>this.updateView('daily')}></div>
+            <div class={'icon animated fadeInUp '+dayActive} onClick={()=>this.updateView('daily')}></div>
           </div>
-          <p class="type">{currentView}</p>
+          <p class="type animated fadeInUp" style={{animationDelay: '1.3s'}}>{currentView}</p>
 
         </div>
         <div class="col span_3_of_12 gymLocation">
-          <p>CHOOSE A GYM</p>
-          <div class="searchGym">
-            <input type="text" class="gymInput"  />
+          <p class="animated fadeInLeft">CHOOSE A GYM</p>
+          <div class="searchGym animated fadeInUp" style={{animationDelay: '0s'}} onClick={()=>this.showGyms(this.state.showGymsToggle)}>
+           <span>{this.state.selectedClub}</span>▼
           </div>
-          <div class="optionsGym">
+          <div class={this.state.showGymsToggle ? "optionsGym active animated fadeIn" : "optionsGym"}>
           {localList}
-
             <div class="resetChoises">
-              <span>RESET CHOISES</span>
+              <span onClick={()=>this.resetGym()}>RESET CHOISES</span>
             </div>
           </div>
         </div>
         <div class="col span_3_of_12 gymActivities">
-          <p>FILTER ACTIVITIES</p>
-          <div class="searchClass">
-            <input type="text" class="classInput" />
+          <p class="animated fadeInLeft">FILTER ACTIVITIES</p>
+          <div class="searchClass animated fadeInUp"  style={{animationDelay: '.5s'}} onClick={()=>this.showAct(this.state.showActToggle)}>
+            <span>{this.state.selectedAct}</span>▼
           </div>
-          <div class="optionsClass">
-            <h3>Dance</h3>
-            <ul>
-              <li><input type="checkbox" id="airfit"/><label for="airfit"><span></span>Air Fit</label></li>
-              <li><input type="checkbox" id="bodyjam"/><label for="bodyjam"><span></span>Bodyjam</label></li>
-              <li><input type="checkbox" id="kizomba"/><label for="kizomba"><span></span>Kizomba</label></li>
-              <li><input type="checkbox" id="zumba"/><label for="zumba"><span></span>Zumba</label></li>
-            </ul>
+          <div class={this.state.showActToggle ? "optionsClass active animated fadeIn" : "optionsClass animated fadeInUp"}>
+            {activityCatList}
             <div class="allClasses">
-              <span>VIEW ALL CLASSES</span>
+              <span onClick={()=>this.resetClasses()}>VIEW ALL CLASSES</span>
             </div>
           </div>
         </div>
         <div class="col span_2_of_12 classIntensity">
-          <p>INTENSITY</p>
+          <p class="animated fadeInLeft">INTENSITY</p>
           <div class="intensityLevel group section">
-          <div class={(this.state.intensity>=0)?'first intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(0)}></div>
-          <div class={(this.state.intensity>=1)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(1)}></div>
-          <div class={(this.state.intensity>=2)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(2)}></div>
-          <div class={(this.state.intensity>=3)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(3)}></div>
-          <div class={(this.state.intensity>=4)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(4)}></div>
-          <div class={(this.state.intensity>=5)?'intensityBlock active':'intensityBlock'} onClick={()=>this.updateIntensity(5)}></div>
+          <div  style={{animationDelay: '.6s'}} class={(this.state.intensity>=0)?'first intensityBlock active animated fadeInUp':'intensityBlock animated fadeInUp'} onClick={()=>this.updateIntensity(0)}></div>
+          <div  style={{animationDelay: '.7s'}} class={(this.state.intensity>=1)?'intensityBlock active animated fadeInUp':'intensityBlock animated fadeInUp'} onClick={()=>this.updateIntensity(1)}></div>
+          <div  style={{animationDelay: '.8s'}} class={(this.state.intensity>=2)?'intensityBlock active animated fadeInUp':'intensityBlock animated fadeInUp'} onClick={()=>this.updateIntensity(2)}></div>
+          <div  style={{animationDelay: '.9s'}} class={(this.state.intensity>=3)?'intensityBlock active animated fadeInUp':'intensityBlock animated fadeInUp'} onClick={()=>this.updateIntensity(3)}></div>
+          <div  style={{animationDelay: '1.0s'}} class={(this.state.intensity>=4)?'intensityBlock active animated fadeInUp':'intensityBlock animated fadeInUp'} onClick={()=>this.updateIntensity(4)}></div>
+          <div  style={{animationDelay: '1.1s'}} class={(this.state.intensity>=5)?'intensityBlock active animated fadeInUp':'intensityBlock animated fadeInUp'} onClick={()=>this.updateIntensity(5)}></div>
 
           </div>
-          <p class="type">{intLabel}</p>
+          <p class="type animated fadeInUp" style={{animationDelay: '1.4s'}}>{intLabel}</p>
         </div>
         <div class="col span_2_of_12 classTime">
-          <p>DAY TIME</p>
-          <div class="dayTime">
+          <p class="animated fadeInLeft">DAY TIME</p>
+          <div style={{animationDelay: '1.2s'}} class="dayTime animated fadeInUp">
             <span class={'morning '+actMor} onClick={()=>this.updateViewTime('morning')}></span>
             <span class={'afternoon '+actAft} onClick={()=>this.updateViewTime('afternoon')}></span>
             <span class={'evening '+actEve} onClick={()=>this.updateViewTime('evening')}></span>
           </div>
-          <p class="type">{fromToTime}</p>
+          <p class="type animated fadeInUp" style={{animationDelay: '1.5s'}}>{fromToTime}</p>
         </div>
       </div>
     );

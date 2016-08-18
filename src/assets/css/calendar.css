@@ -61,6 +61,12 @@
     margin: 0 auto;
 }
 
+.schedule-class {
+    margin-top: 68px;
+    width: 90%;
+    margin: 0 auto;
+}
+
 .section.group.scheduleFilters {
     width: 95%;
     margin: 0 auto;
@@ -83,9 +89,11 @@
 .weekly .icon.active:hover {
     background: url('../images/calendario.png') no-repeat;
 }
+
 .weekly .icon:hover {
     background: url('../images/calendarIcon.png') no-repeat;
 }
+
 .weekly .icon {
     cursor: pointer;
     background: url('../images/calendario.png') no-repeat;
@@ -93,16 +101,18 @@
     width: 26px;
     height: 26px;
     float: right;
-    margin-right: 5px; 
+    margin-right: 5px;
 }
 
 .daily {
     width: 50%;
     float: left;
 }
-.dailyClasses{
-  min-height: 200px;
+
+.dailyClasses {
+    min-height: 200px;
 }
+
 .scheduleFilters div p {
     font-family: 'Lato-Regular', sans-serif;
     font-size: 1.077em;
@@ -138,6 +148,7 @@ p.type {
 .daily .icon:hover {
     background: url('../images/calendaricon2.png') no-repeat;
 }
+
 .daily .icon {
     cursor: pointer;
     background: url('../images/calendario_dia.png') no-repeat;
@@ -151,6 +162,7 @@ p.type {
 .daily .icon.active:hover {
     background: url('../images/calendario_dia.png') no-repeat;
 }
+
 .daily .icon.active {
     background: url('../images/calendaricon2.png') no-repeat;
     background-position: center center;
@@ -163,26 +175,42 @@ p.type {
 .gymLocation p,
 .gymActivities p {
     text-align: left;
-    margin-bottom: 17px;
+    margin-bottom: 24px;
 }
 
-.searchGym,
-.searchClass {
-    width: 100%;
-    background: url('../images/lupa.png') no-repeat;
-    background-position: 202px;
+.searchGym{
+     width: 232px;;
+/*    background: url('../images/lupa.png') no-repeat;
+    background-position: 202px;*/
+    color:#ada38b;
     background-color: #f5f3ec;
     border-radius: 2px;
+    cursor: pointer;
+    text-align: right;
+    padding-right: 15px;
+    padding: 8px;
+}
+.searchClass {
+width:232px;
+/*    background: url('../images/lupa.png') no-repeat;*/
+/*    background-position: 202px;*/
+    color:#ada38b;
+    background-color: #f5f3ec;
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: right;
+    padding-right: 15px;
+    padding: 8px;
 }
 
-.searchGym input:valid,
-.searchClass input:valid {
-    color: #565656;
-    font-family: 'Lato-Bold';
+.first.intensityBlock{
+    background: #FFF;
+    width: 5.7px;
+    height: 18px;
+    border: 4px solid #ada38b;
 }
-
-.searchGym input,
-.searchClass input {
+.searchGym span,
+.searchClass span {
     font-size: 1.077em;
     font-family: 'Lato-Bold';
     border: 0;
@@ -196,24 +224,32 @@ p.type {
 }
 
 .optionsGym {
-    width: 244px;
+    width: 248px;
     z-index: 1;
     position: absolute;
     display: none;
-    height: 304px;
+    overflow-y: scroll;
+    height: 331px;
     padding-top: 8px;
     background-color: #e5e0ce;
     box-shadow: 0 30px 50px 0 rgba(0, 0, 0, 0.29);
 }
-
+.optionsGym.active{
+    display: block;
+}
+.optionsClass.active {
+    display: block;
+}
 .optionsClass {
-    width: 244px;
+    width: 248px;
     z-index: 1;
     position: absolute;
     display: none;
     height: 242px;
     padding-top: 8px;
     background-color: #e5e0ce;
+    height: 268px;
+    overflow-y: scroll;
     /*  background-color: var(--pinkish-grey);*/
     box-shadow: 0 30px 50px 0 rgba(0, 0, 0, 0.29);
 }
@@ -263,8 +299,7 @@ input[type="checkbox"]:checked + label {
     font-family: 'Lato-Regular';
     line-height: 1.82;
     font-size: 1em;
-    color: #ffffff;
-    color: var(--white);
+    cursor: pointer;
 }
 
 .intensityLevel.group.section {
@@ -290,6 +325,7 @@ input[type="checkbox"]:checked + label {
     opacity: 0.5;
     font-family: 'Lato-Regular';
     line-height: 1.82;
+    cursor: pointer;
     font-size: 1em;
 }
 
@@ -323,40 +359,61 @@ input[type="checkbox"]:checked + label {
 
 .intensityBlock {
     float: left;
-    opacity: 0.29;
     margin-left: 5px;
-    background: #ada38b;
+    background: #e8e5de;
     height: 26px;
     width: 13.7px;
     cursor: pointer;
 }
 
 .intensityBlock.active {
+    background: #ada38b;
+}
+
+.grau1.intensityBlock:hover,
+.grau2.intensityBlock:hover,
+.grau3.intensityBlock:hover,
+.grau4.intensityBlock:hover,
+.grau5.intensityBlock:hover,
+.grau6.intensityBlock:hover {
     opacity: 1;
 }
-.grau1.intensityBlock:hover,.grau2.intensityBlock:hover,.grau3.intensityBlock:hover,.grau4.intensityBlock:hover,.grau5.intensityBlock:hover,.grau6.intensityBlock:hover{
-opacity:1;
+
+.grau1.intensityBlock.active:hover,
+.grau2.intensityBlock.active:hover,
+.grau3.intensityBlock.active:hover,
+.grau4.intensityBlock.active:hover,
+.grau5.intensityBlock.active:hover,
+.grau6.intensityBlock.active:hover {
+    opacity: .29;
 }
-.grau1.intensityBlock.active:hover,.grau2.intensityBlock.active:hover,.grau3.intensityBlock.active:hover,.grau4.intensityBlock.active:hover,.grau5.intensityBlock.active:hover,.grau6.intensityBlock.active:hover{
-opacity:.29;
-}
+
+
 /*SCHEDULE*/
-
-.weeklySchedule {
-    width: 100%;
-    border-radius: 4px;
+.weeklyScheduleTop {
+    border-radius: 4px 4px 0 0;
     background-color: #171614;
 }
 
-.dailySchedule {
-    width: 100%;
-    border-radius: 4px;
+.dailyScheduleTop {
+    border-radius: 4px 4px 0 0;
     background-color: #171614;
 }
+.weeklyScheduleBottom {
+    border-radius: 0px 0px 4px 4px;
+    background-color: #171614;
+}
+
+.dailyScheduleBottom {
+    border-radius: 0px 0px 4px 4px;
+    background-color: #171614;
+}
+
 
 .scheduleTime {
     width: 9%;
     float: left;
+    min-height: 130px;
 }
 
 .dayTitle {
@@ -395,7 +452,7 @@ opacity:.29;
     position: relative;
     border-radius: 4px;
     background-color: rgba(255, 255, 255, 0.07);
-    padding: 11% 0 12.85% 17.8%;
+    padding: 11% 7% 12.85% 17.8%;
     text-align: left;
     margin-bottom: 9px;
 }
@@ -404,7 +461,7 @@ opacity:.29;
     display: block;
 }
 
-.weeklySchedule div .hourTime {
+.weeklyScheduleBottom div .hourTime {
     font-family: 'Lato-Bold';
     font-size: 0.846em;
     line-height: 1.82;
@@ -412,7 +469,7 @@ opacity:.29;
     margin-bottom: -5px;
 }
 
-.weeklySchedule div .className {
+.weeklyScheduleBottom div .className {
     font-family: 'Lato-Bold';
     text-transform: uppercase;
     font-size: 1.154em;
@@ -462,6 +519,8 @@ opacity:.29;
 .red-bg {
     background-color: #c9343e;
 }
+
+
 /*to add Color in Category:
 You need to add this classes, with this structure:
 
@@ -471,54 +530,67 @@ background-color: [Color];
 };
 You have some examples down here.
 */
+
 .classColor.classColorAqua {
     background-color: #00ade0;
-    border-bottom:0;
+    border-bottom: 0;
 }
+
 .classColorDetails.classColorAqua {
     background-color: #00ade0;
-    border-bottom:0;
+    border-bottom: 0;
 }
-.classColor.classColorMartialArts{
-    border-bottom:0;
-    background-color:#f98d10;
+
+.classColor.classColorMartialArts {
+    border-bottom: 0;
+    background-color: #f98d10;
 }
-.classColorDetails.classColorMartialArts{
-    border-bottom:0; 
-    background-color:#f98d10;
+
+.classColorDetails.classColorMartialArts {
+    border-bottom: 0;
+    background-color: #f98d10;
 }
-.classColor.classColorMindBody{ 
-    border-bottom:0;
-    background-color:#fbcd00;
+
+.classColor.classColorMindBody {
+    border-bottom: 0;
+    background-color: #fbcd00;
 }
-.classColorDetails.classColorMindBody{ 
-    border-bottom:0;
-    background-color:#fbcd00;
+
+.classColorDetails.classColorMindBody {
+    border-bottom: 0;
+    background-color: #fbcd00;
 }
-.classColor.classColorConditioning{
-    border-bottom:0;
-    background-color:#f12e15;
+
+.classColor.classColorConditioning {
+    border-bottom: 0;
+    background-color: #f12e15;
 }
-.classColorDetails.classColorConditioning{
-    border-bottom:0;
-    background-color:#f12e15;
+
+.classColorDetails.classColorConditioning {
+    border-bottom: 0;
+    background-color: #f12e15;
 }
-.classColor.classColorPerformance{
-     border-bottom:0;
-    background-color:#005a9a; 
+
+.classColor.classColorPerformance {
+    border-bottom: 0;
+    background-color: #005a9a;
 }
-.classColorDetails.classColorPerformance{
-     border-bottom:0;
-    background-color:#005a9a; 
+
+.classColorDetails.classColorPerformance {
+    border-bottom: 0;
+    background-color: #005a9a;
 }
-.classColor.classColorDance{
-    border-bottom:0;
-  background-color:#8b4a97; 
+
+.classColor.classColorDance {
+    border-bottom: 0;
+    background-color: #8b4a97;
 }
-.classColorDetails.classColorDance{
-    border-bottom:0;
-  background-color:#8b4a97; 
+
+.classColorDetails.classColorDance {
+    border-bottom: 0;
+    background-color: #8b4a97;
 }
+
 .vertical-text-morning {
     background: url('../images/morningBeje.png');
     background-repeat: no-repeat;
@@ -596,24 +668,38 @@ You have some examples down here.
 }
 
 .classBlock.active {
-    padding: 6px 0 0 31px;
-    width: 119px;
-    height: 85px;
+    padding: 6px 3px 7px 22px;
+    width: 113px;
+    min-height: 85px;
     border-radius: 4px;
     background-color: #ffffff;
     margin-top: -16px;
 }
-.classBlock.active .placeDetails,.classBlock.active a.linkDetails{
+
+.profScheBlock {
+    font-family: 'Lato-Bold';
+    font-size: 1em;
+    line-height: 1.62;
+    letter-spacing: 0.6px;
+    color: #565656;
+}
+
+.dateSche {}
+
+.classBlock.active .placeDetails,
+.classBlock.active a.linkDetails {
     display: block;
 }
-.classBlock.active .hourTime{
+
+.classBlock.active .hourTime {
     opacity: 0.4;
     font-family: 'Lato-Bold';
     font-size: 0.846em;
     color: #081d26;
     margin-bottom: 4px;
 }
-.classBlock.active .className{
+
+.classBlock.active .className {
     font-family: 'Lato-Bold';
     font-size: 1.154em;
     letter-spacing: 0.4px;
@@ -621,6 +707,7 @@ You have some examples down here.
     color: #081d26;
     margin-bottom: -4px;
 }
+
 .hourDetails {
     display: block;
     opacity: 0.4;
@@ -648,9 +735,11 @@ You have some examples down here.
     font-size: 0.846em;
     color: #081d26;
 }
+
 a.linkDetails {
     display: none;
 }
+
 .classBlockDetails a.linkDetails {
     text-transform: uppercase;
     display: block;
@@ -658,7 +747,6 @@ a.linkDetails {
     font-size: 0.846em;
     letter-spacing: 0.4px;
     color: #b3a26c;
-
 }
 
 .dailyClass {
@@ -698,6 +786,11 @@ a.linkDetails {
     height: 11px;
     cursor: pointer;
 }
+.dailyCrossLast {
+    width: 11px;
+    height: 11px;
+    cursor: pointer;
+}
 
 .dailyCross:before,
 .dailyCross:after {
@@ -706,6 +799,18 @@ a.linkDetails {
     right: 15px;
     content: ' ';
     height: 11px;
+    top: 4px;
+    width: 2px;
+    background-color: #333;
+}
+.dailyCrossLast:before,
+.dailyCrossLast:after {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    content: ' ';
+    height: 11px;
+    top: 13px;
     width: 2px;
     background-color: #333;
 }
@@ -715,6 +820,13 @@ a.linkDetails {
 }
 
 .dailyCross:after {
+    transform: rotate(-45deg);
+}
+.dailyCrossLast:before {
+    transform: rotate(45deg);
+}
+
+.dailyCrossLast:after {
     transform: rotate(-45deg);
 }
 
@@ -782,6 +894,7 @@ a.linkDetails {
 .dayTime .morning:hover {
     background-image: url(../images/morning.png);
 }
+
 .dayTime .morning {
     cursor: pointer;
     width: 24px;
@@ -796,12 +909,15 @@ a.linkDetails {
 .dayTime .morning.active {
     background-image: url(../images/morning.png);
 }
-.dayTime .morning.active:hover{
+
+.dayTime .morning.active:hover {
     background-image: url(../images/morningSoftGrey.png);
 }
+
 .dayTime .afternoon:hover {
     background-image: url(../images/afternoonSoftGrey.png);
 }
+
 .dayTime .afternoon {
     cursor: pointer;
     background-image: url(../images/afternoonSoftGrey.png);
@@ -811,17 +927,20 @@ a.linkDetails {
     width: 27px;
     margin-right: 27px;
 }
+
 .dayTime .afternoon.active:hover {
     background-image: url(../images/afternoonSoftGrey.png);
 }
+
 .dayTime .afternoon.active {
     background-image: url(../images/afternoon.png);
 }
 
 .dayTime .evening:hover {
-  background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background: url(../images/nightGrey.png);
 }
+
 .dayTime .evening {
     cursor: pointer;
     background: url(../images/night.png);
@@ -832,9 +951,10 @@ a.linkDetails {
 }
 
 .dayTime .evening.active:hover {
-  background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background: url(../images/night.png);
 }
+
 .dayTime .evening.active {
     background: url(../images/nightGrey.png);
 }
@@ -859,7 +979,7 @@ a.linkDetails {
 }
 
 .opacity {
-    opacity: .5;
+    opacity: .5!important;
 }
 
 .calendarMode {
@@ -869,133 +989,275 @@ a.linkDetails {
 .dayTime.section.group {
     margin: 0 auto
 }
-/*NEW CALENDAR*/
-.scheduleProfs.section.group{
+
+.dailyClassCorp.active {
+    background: #FFF;
+}
+
+.dailyClassCorp.active .dailyAula span {
+    color: #444;
+}
+
+.dailyClassCorp.active .dailyHora span {
+    color: #000;
+}
+
+.dailyClassCorp.active .dailyLocal span,
+.dailyClassCorp.active .dailyCategoria span,
+.dailyClassCorp.active .dailyClube span {
+    color: #000;
+}
+.dailyClassCorp.active .seeDetails{
+    display: block;
+}
+.seeDetails{
+        height: 5px;
+    padding-bottom: 5px;
+    display: none;
+    clear: both;
+}
+.seeDetails a{
+    color:#444;
+    display: block;
+    text-align: left;
+    line-height: 4px;
+    padding-left: 15px;
+    font-size: 0.8em;
+    font-family: 'Lato-Bold';
+}
+/***************
+/*NEW CALENDAR
+***************/
+.hourBlock.newClass{
+    background: #000
+}
+.hourBlock.newClass div{
+    color: #fff;
+}
+.scheduleProfs.section.group {
     width: 100%;
     padding-left: 10%;
     margin-bottom: 25px;
     margin-top: 30px;
 }
-.scheduleProfs .profs{
+
+.scheduleProfs .profs {
     width: 20%;
     margin-left: 1%;
     float: left;
 }
-.scheduleProfs .profs span{
+
+.scheduleProfs .profs span {
     width: 10px;
     height: 10px;
     float: left;
 }
-.mainSchedule{
+
+.mainSchedule {
     width: 100%;
-  border-radius: 3px;
-  border: solid 1px #e5e0ce;
+    border-radius: 3px;
+    border: solid 1px #e5e0ce;
+    padding: 8px;
 }
-.timeSche{
+
+.ScheduleDays .dayTitle{
+    cursor: pointer;
+}
+.dayRow {
+width: 12.9%;
     float: left;
-    width: 5%;
+    border-right: 1px solid #e5e0ce
 }
-.dayTitle{
-    width: 12%;
-    float: left;
+.dayRow:last-child {
+    border-right: 0;
 }
-.daySche span{
+.weekday span {
     display: block;
+        width: 80%;
+        margin:0 auto;
     text-align: center;
 }
-.daysSche .daySche span.days{
-  font-family: 'Lato-Bold';
-  font-size: 1.077em;
-  color: #565656;
-} 
-.profColor{    
+
+.weekday span.days {
+    text-transform: uppercase;
+    font-family: 'Lato-Bold';
+    font-size: 1.077em;
+    color: #565656;
+}
+
+.profColor {
     width: 15px;
     height: 15px;
     border-radius: 4px;
-    margin-top: 1px;
+    margin-top: 5px;
     float: left;
     margin-right: 5px;
 }
-.profColor.blue{
-background-color: #588aa0
+
+.blue {
+    background-color: #588aa0
 }
-.profColor.green{
-background-color: #70cdb2
+.black {
+    background-color: #000
 }
-.profColor.orange{
-background-color: #eda572
+.green {
+    background-color: #70cdb2
 }
-.profColor.yellow{
-background-color: #d2d65f
-    
+
+.orange {
+    background-color: #eda572
 }
-.profColor.purple{
-background-color: #b286ba
-    
+
+.yellow {
+    background-color: #d2d65f
 }
-.scheduleProfs .prof{
+
+.purple {
+    background-color: #b286ba
+}
+
+.scheduleProfs .prof {
     float: left;
     width: 15%;
+  font-family: 'Lato-Regular';
+  font-size: 1.154em;
+  line-height: 1.67;
+  letter-spacing: 0.3px;
+  color: #757575;
 }
+
+.dateSche {
+    font-family: 'Lato-Light';
+    font-size: 1em;
+    color: #565656;
+    border-bottom: 1px solid #e5e0ce;
+    padding-bottom: 7px;
+}
+
+.hourBlock {
+font-family: 'Lato-bold';
+    font-size: 1em;
+    line-height: 1.62;
+    width: 85%;
+    letter-spacing: 0.6px;
+    color: #565656;
+    border-radius: 5px;
+    padding: 3px 0px;
+    padding-left: 11px;
+    margin-top: 17px;
+}
+
+.hourBlock div {
+    display: block;
+    font-family: 'Lato-bold';
+    font-size: 1em;
+    line-height: 1.62;
+    text-align: center;
+    letter-spacing: 0.6px;
+    color: #565656;
+}
+.profSlice{
+    width: 20px;
+    border-radius: 3px;
+    height: 4px;
+    display: block;
+    margin-top: 8px;
+    margin-right: 10px;
+    float: right;
+}
+.imgMorning {
+    background: url('../images/morningBeje.png') no-repeat;
+    background-position: center center;
+    margin-top: 14px;
+}
+
+.imgAfternoon {
+    background: url('../images/afternoonBeje.png') no-repeat;
+    background-position: center center;
+    margin-top: 21px;
+    padding: 15px;
+}
+
+.imgEvening {
+    background: url('../images/nightBeje.png') no-repeat;
+    background-position: center center;
+    margin-top: 35px;
+}
+
+.imgDefault {
+    display: block;
+    width: 100%;
+    height: 60px;
+}
+
 @media screen and (max-width:1279px) {
     .schedule {
         width: 100%;
     }
-    .dayTime{
-      width: 90%;
-    } 
-    .searchGym, .searchClass {
-    background-position: 196px;
-  }
+    .dayTime {
+        width: 90%;
+    }
+    .searchGym,
+    .searchClass {
+        background-position: 196px;
+    }
 }
+
 @media screen and (max-width:1145px) {
-  .dayTime {
-      width: 94%;
-  }
-  .searchGym input, .searchClass input {
-    margin: 11px 0 9px 9px;
-  }
+    .dayTime {
+        width: 94%;
+    }
+    .searchGym span,
+    .searchClass span {
+        margin: 11px 0 9px 9px;
+    }
 }
+
 @media screen and (max-width:1024px) {
-  .dayTime .morning {
-    margin-right: 20px;
-  }
-  .dayTime {
-    width: 100%;
-}
-.vertical-text-morning .morningSche, .vertical-text-afternoon .afternoonSche, .vertical-text-evening .eveningSche {
-    width: 134%;
+    .dayTime .morning {
+        margin-right: 20px;
     }
-    .dayBottom{
-      font-size: 0.985em;
+    .dayTime {
+        width: 100%;
+    }
+    .vertical-text-morning .morningSche,
+    .vertical-text-afternoon .afternoonSche,
+    .vertical-text-evening .eveningSche {
+        width: 134%;
+    }
+    .dayBottom {
+        font-size: 0.985em;
     }
 }
+
 @media screen and (max-width:768px) {
-    .classIntensity{
+    .classIntensity {
         display: none;
     }
-    .searchGym, .searchClass {
+    .searchGym,
+    .searchClass {
         background-position: 200px;
     }
-    .searchGym input:valid, .searchClass input:valid {
+    .searchGym input:valid,
+    .searchClass input:valid {
         color: #565656;
         font-family: 'Lato-Bold';
         width: 70%;
     }
     .page-template-template-schedule #wrapper .wrapperBody .sectionPage {
-        margin:0;
-    } 
-    .sectionPage .section.ScheduleDays {
-        padding:0;
+        margin: 0;
     }
-    .sectionPage .section.weeklySchedule {
+    .sectionPage .section.ScheduleDays {
+        padding: 0;
+    }
+    .sectionPage .section.weeklyScheduleBottom,.sectionPage .section.weeklyScheduleTop {
         border-radius: 0;
-        padding:0;
+        padding: 0;
     }
     .page-template-template-schedule #wrapper .wrapperBody .sectionPage .maincontent {
         width: 100%;
     }
-    .page-template-template-schedule .sectionPage .section.scheduleFilters{
+    .page-template-template-schedule .sectionPage .section.scheduleFilters {
         padding: 2%;
     }
     .page-template-template-schedule .span_2_of_12 {
@@ -1013,11 +1275,11 @@ background-color: #b286ba
     .dayTitle {
         width: 13.2%;
     }
-    .scheduleTime{
+    .scheduleTime {
         display: none;
-    } 
+    }
     .sectionPage .section.weekClasses {
-        padding:1%;
+        padding: 1%;
     }
     .scheduleBorder {
         width: 98%;
@@ -1027,31 +1289,35 @@ background-color: #b286ba
     .dailySchedule {
         border-radius: 0px;
     }
-    .page-template-template-schedule .section.dailySchedule{
+    .page-template-template-schedule .section.dailySchedule {
         padding: 0;
-    } 
-    .dailyClasses.section.group{
-        padding: 1%; 
     }
-    .vertical-text-afternoon,.vertical-text-morning,.vertical-text-evening  {
+    .dailyClasses.section.group {
+        padding: 1%;
+    }
+    .vertical-text-afternoon,
+    .vertical-text-morning,
+    .vertical-text-evening {
         display: block;
         width: 100%;
-    height: 50px;
-    background-position: 7px;
+        height: 50px;
+        background-position: 7px;
     }
     .dailySchedule .scheduleBorder {
         margin-bottom: 0;
     }
-    .scheduleTime .eveningSche,.scheduleTime .morningSche,.scheduleTime .afternoonSche{
+    .scheduleTime .eveningSche,
+    .scheduleTime .morningSche,
+    .scheduleTime .afternoonSche {
         display: none;
     }
     .dailyClass {
-    width: 100%;
+        width: 100%;
     }
     .dailySchedule .dailyClassCorp.section {
         padding: 1%;
     }
-    .dailySchedule  .dailyClassHeader.section {
+    .dailySchedule .dailyClassHeader.section {
         padding: 1%;
     }
 }

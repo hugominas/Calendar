@@ -40,7 +40,8 @@ export default class WeekDay extends React.Component {
     const currWeekDay = new Date();
     const classComponents = this.weekDays.map((key1) => {
       //CHECK IF ITS ON THE CORRECT DAY AND ADD TO PROP
-      let prop = []
+      let prop = [];
+      let delay = 0;
         Object.keys(this.props.classes).map((key) => {
               Object.keys(this.props.classes[key]).map((k) => {
                 if(typeof this.props.classes[key][k] !== 'undefined' && this.props.classes[key][k] !== false){
@@ -53,6 +54,8 @@ export default class WeekDay extends React.Component {
                   if(new Date(startDate[2], startDate[1] - 1, startDate[0])>thisDate || (thisDate< new Date(endDate[2], endDate[1] - 1, endDate[0]) || endDate.length==1)){
                     //let uniqueKey=Math.floor((Math.random() * 1000) + 1);
                     this.props.classes[key][k].selectClass=(this.props.classes[key][k].class_id==this.state.activeClassId)?'active':(this.state.activeClassId!=='')?'opacity':false;
+                    delay+=.1;
+                    this.props.classes[key][k].delay=delay;
                     (typeof this.props.classes[key][k].repeat !=='undefined' && this.props.classes[key][k].repeat.indexOf(''+(i+1))!==-1)?prop.push(<ClassesBlock key={this.props.classes[key][k].id} {... this.props.classes[key][k]}/>):false;
 
                   }else if(new Date(startDate[2], startDate[1] - 1, startDate[0])==thisDate){
@@ -67,7 +70,7 @@ export default class WeekDay extends React.Component {
 
 
     return (
-        <div class="weekClasses section group">
+        <div class="weekClasses section group fadeInUp animated">
           <div class={'scheduleTime vertical-text-'+this.props.period}><span class={this.props.period+'Sche'}>{this.props.period}</span></div>
           {classComponents}
           <div class="scheduleBorder"></div>

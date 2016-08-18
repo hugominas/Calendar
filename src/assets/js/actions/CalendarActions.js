@@ -56,6 +56,26 @@ export function updateClubFilter(clubid) {
   });
 }
 
+export function updateCategoryFilter(catid) {
+  dispatcher.dispatch({
+    type: "SET_CATFILTER",
+    catid
+  });
+}
+
+export function resetClasses() {
+  dispatcher.dispatch({
+    type: "CLEAR_CLASSESSELECTION"
+  });
+}
+
+export function resetGym() {
+  dispatcher.dispatch({
+    type: "CLEAR_GYMSELECTION"
+  });
+}
+
+
 
 
 export function reloadFilters() {
