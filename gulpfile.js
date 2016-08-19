@@ -16,6 +16,8 @@ const del         = require('del');
 const htmlmin     = require('gulp-htmlmin');
 const plumber     = require('gulp-plumber');
 const cleanCSS    = require('gulp-clean-css');
+const docco       = require("gulp-docco");
+
 
 // add options to babelify
 var options             = watchify.args;
@@ -38,7 +40,7 @@ function bundle() {
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
         .pipe(source('dist/assets/js/bundle.js'))
         .pipe(buffer())
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest(''));
         browserSync.reload();
         return;
@@ -104,6 +106,15 @@ gulp.task('html', () =>
  });
 
  /**
+ * Generate documentation
+ */
+ gulp.task('documentation', () =>
+ {
+   return gulp.src(["./src/assets/js/**/*.js"])
+    .pipe(wrapDocco({src: 'template.html'}))
+    .pipe(gulp.dest('./dist/documentation'))
+ });
+ /**
  * This task will copy all files from libs into 'dist/css'.
  * If you want to process them, just add your code to this task.
  */
@@ -118,4 +129,8 @@ gulp.task('css', () =>
 
 gulp.task('default', (callback)=> {
   runSequence('clean', 'html', 'css', 'fonts', 'img', 'browserify', 'browser-sync');
+});
+
+gulp.task('documentation', (callback)=> {
+  runSequence('documentation');
 });

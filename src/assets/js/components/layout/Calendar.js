@@ -13,12 +13,27 @@ export default class Calendar extends React.Component {
     super();
     CalendarActions.reloadCalendar();
     this.getCalendar = this.getCalendar.bind(this);
+
     this.state = {
       calendars: CalendarStore.getAll(),
       times: CalendarStore.getTimes(),
-      view: CalendarStore.getView()
+      view: CalendarStore.getView(),
+      width:this.updateDimensions().width,
+      height:this.updateDimensions().height
     };
   }
+
+  updateDimensions() {
+
+      var w = window,
+          d = document,
+          documentElement = d.documentElement,
+          body = d.getElementsByTagName('body')[0],
+          width = w.innerWidth || documentElement.clientWidth || body.clientWidth,
+          height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
+
+          return {width: width, height: height};
+      }
 
   componentWillMount() {
     CalendarStore.on("change", this.getCalendar);
@@ -32,7 +47,9 @@ export default class Calendar extends React.Component {
     this.setState({
       calendars: CalendarStore.getAll(),
       times: CalendarStore.getTimes(),
-      view: CalendarStore.getView()
+      view: CalendarStore.getView(),
+      width:this.updateDimensions().width,
+      height:this.updateDimensions().height
     });
   }
 
@@ -50,8 +67,9 @@ export default class Calendar extends React.Component {
         classes: (calendars[key]||[]),
         period: key
       }
+      console.log(this.state.width)
       //CHECK I
-        if(this.state.view == 'weekly'){
+        if(this.state.view == 'weekly' && this.state.width>451){
           return <div class={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'} key={a}><WeekDay {... props}/></div>;
         }else{
           return <div class={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'} key={a}><Day {... props}/></div>;

@@ -55,11 +55,13 @@ export default class Filters extends React.Component {
   }
 
   updateClubFilter(clubId) {
-      CalendarActions.updateClubFilter(clubId);
+      CalendarActions.updateClubFilter(''+clubId);
+      this.showGyms(this.state.showGymsToggle)
   }
 
   updateCategoryFilter(catId) {
-      CalendarActions.updateCategoryFilter(catId);
+      CalendarActions.updateCategoryFilter(''+catId);
+      this.showAct(this.state.showActToggle)
   }
 
 
@@ -128,7 +130,7 @@ export default class Filters extends React.Component {
       localList = Object.keys(this.state.filters.locations.clubs).map((location)=>{
         let clublist = Object.keys(this.state.filters.locations.clubs[location]).map((club)=>{
           let thisId = this.state.filters.locations.clubs[location][club];
-          return <li key={thisId}><input type="checkbox" checked={(this.state.clubList.indexOf(thisId)!==-1)} id={thisId} onChange={()=>this.updateClubFilter(thisId)} /><label for={thisId}><span></span>{this.state.filters.clubs[thisId]}</label></li>;
+          return <li key={thisId}><input type="checkbox" checked={(this.state.clubList.indexOf(''+thisId)!==-1)} id={thisId} onChange={()=>this.updateClubFilter(thisId)} /><label for={thisId}><span></span>{this.state.filters.clubs[thisId]}</label></li>;
         })
         return <div key={location}><h3>{location}</h3><ul>{clublist}</ul></div>;
       })
@@ -147,7 +149,7 @@ export default class Filters extends React.Component {
        activityCatList=Object.keys(actList).map((activity)=>{
          let activityClassList=Object.keys(actList[activity]).map((classes)=>{
            a++;
-           return <li key={a+'_classDetail'}><input type="checkbox" checked={(this.state.actList.indexOf(actList[activity][classes].id)!==-1)} id={actList[activity][classes].id} onChange={()=>this.updateCategoryFilter(actList[activity][classes].id)} /><label for={actList[activity][classes].id}><span></span>{actList[activity][classes].name}</label></li>;
+           return <li key={a+'_classDetail'}><input type="checkbox" checked={(this.state.actList.indexOf(''+actList[activity][classes].id)!==-1)} id={actList[activity][classes].id} onChange={()=>this.updateCategoryFilter(actList[activity][classes].id)} /><label for={actList[activity][classes].id}><span></span>{actList[activity][classes].name}</label></li>;
          })
          return <div key={activity}><h3>{activity}</h3><ul>{activityClassList}</ul></div>;
        })
