@@ -39,8 +39,8 @@ export default class Filters extends React.Component {
       view:CalendarStore.getView(),
       actList:CalendarStore.getActFilter(),
       clubList:CalendarStore.getCLubFilter(),
-      selectedAct:(CalendarStore.getActFilter().length + ' Activities selected'),
-      selectedClub:(CalendarStore.getCLubFilter().length + ' Clubs selected')
+      selectedAct:(CalendarStore.getActFilter().length + ' selected'),
+      selectedClub:(CalendarStore.getCLubFilter().length + ' selected')
     });
   }
 
