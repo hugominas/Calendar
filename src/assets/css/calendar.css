@@ -419,8 +419,7 @@ input[type="checkbox"]:checked + label {
 .dayTitle {
     width: 11.5%;
     float: left;
-    margin-left: 1%;
-    min-height: 5px;
+    min-height: 35px;
 }
 
 .dayTop {
@@ -445,6 +444,13 @@ input[type="checkbox"]:checked + label {
     letter-spacing: 0.5px;
     color: #ffffff;
     margin-bottom: 2em;
+}
+
+.mainSchedule .span_1_of_12,
+.mainSchedule .span_11_of_12{
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: 2px;
 }
 
 .classBlock {
@@ -1060,6 +1066,21 @@ a.linkDetails {
     padding: 8px;
 }
 
+.mainSchedule.top{
+  border-bottom: 0;
+  border-radius: 0;
+}
+.mainSchedule.top .col.span_11_of_12{
+  margin-bottom: 0;
+}
+.mainSchedule.bot .col.span_11_of_12{
+  margin-top: none;
+}
+.mainSchedule.bot{
+  border-top: none;
+  border-radius: 0;
+}
+
 .ScheduleDays .dayTitle{
     cursor: pointer;
 }
@@ -1144,7 +1165,7 @@ font-family: 'Lato-bold';
     border-radius: 5px;
     padding: 3px 0px;
     padding-left: 11px;
-    margin-top: 17px;
+    margin-top: 5px;
 }
 
 .hourBlock div {
@@ -1165,26 +1186,28 @@ font-family: 'Lato-bold';
     margin-right: 10px;
     float: right;
 }
-.imgMorning {
+.imgmorning {
     background: url('../images/morningBeje.png') no-repeat;
     background-position: center center;
     margin-top: 14px;
-}
-
-.imgAfternoon {
-    background: url('../images/afternoonBeje.png') no-repeat;
-    background-position: center center;
-    margin-top: 21px;
     padding: 15px;
 }
 
-.imgEvening {
-    background: url('../images/nightBeje.png') no-repeat;
+.imgafternoon {
+    background: url('../images/afternoonBeje.png') no-repeat;
     background-position: center center;
-    margin-top: 35px;
+    margin-top: 14px;
+    padding: 15px;
 }
 
-.imgDefault {
+.imgevening {
+    background: url('../images/nightBeje.png') no-repeat;
+    background-position: center center;
+    margin-top: 14px;
+    padding: 15px;
+}
+
+.imgdefault {
     display: block;
     width: 100%;
     height: 60px;

@@ -81,15 +81,17 @@ export default class Header extends React.Component {
       delay+=0.1;
       let nameDay = (this.state.width>451)?key:key.substring(0,3);
       //Working with theoffset
-      return <div style={{animationDelay: delay+'s'}} class={'dayTitle animated fadeInLeft'+((this.state.clickedDay==thisDayComp)?' active':'')} key={x} onMouseOver={this.filterDay(thisDate)}><div class="activeCircle"></div><div class="dayTop">{thisDay} {thisMonth}<span class="articleDashSchedule"></span></div><span class="dayBottom">{nameDay}</span></div>
+      return <div style={{animationDelay: delay+'s'}} class={'col dayRow weekday animated fadeInLeft'+((this.state.clickedDay==thisDayComp)?' active':'')} key={x} onMouseOver={this.filterDay(thisDate)}><div class="weekday"><div class="activeCircle"></div><span class="days">{nameDay}</span><span class="dateSche">{thisDay} {thisMonth}</span><span class="articleDashSchedule"></span></div></div>
     })
 
 
 
     return (
-      <div class={((this.state.view=='weekly')?'weeklyScheduleTop':'dailyScheduleTop')+' ScheduleDays section group '}>
-      <div class="scheduleTime"><span>&nbsp;</span></div>
-      {headerTitle}
+      <div class="mainSchedule top group section">
+        <div class="col span_1_of_12"></div>
+        <div class='col span_11_of_12'>
+          {headerTitle}
+        </div>
       </div>
     );
   }

@@ -3,12 +3,11 @@ import React from "react";
 import ClassesBlock from "../ClassesBlock";
 import CalendarStore from "../../stores/CalendarStore";
 import * as CalendarActions from "../../actions/CalendarActions";
-import WeekDay from "../WeekDay";
-import Day from "../Day";
+import WeekDay from "../WeekDayClass";
 
 
 
-export default class Calendar extends React.Component {
+export default class CalendarClass extends React.Component {
   constructor() {
     super();
     CalendarActions.reloadCalendar();
@@ -68,16 +67,13 @@ export default class Calendar extends React.Component {
         period: key
       }
       //CHECK I
-        if(this.state.view == 'weekly' && this.state.width>451){
-          return <div class={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'} key={a}><WeekDay {... props}/></div>;
-        }else{
-          return <div class={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'} key={a}><Day {... props}/></div>;
-        }
+      return <div class={this.state.times.indexOf(key)!==-1 ? '' : 'hidden'} key={a}><WeekDay {... props}/></div>;
+
     });
 
     return (
-      <div class={(this.state.view=='weekly')?'weeklyScheduleBottom':'dailyScheduleBottom'+''}>
-      {CalendarComponents}
+      <div class='mainSchedule bot group section'>
+        {CalendarComponents}
       </div>
     );
   }

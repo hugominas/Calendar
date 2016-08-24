@@ -15,7 +15,7 @@ class CalendarStore extends EventEmitter {
     this.weekDays     = ['Monday','Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     this.monthNames   = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.filters      = {};
-    this.activeFilters= {intensity:0,clubs:(this.defaults.club!=='' && typeof this.defaults.club!=='undefined')?[this.defaults.club]:[],category:(this.defaults.class!=='' && typeof this.defaults.class!=='undefined')?[this.defaults.class]:[]};
+    this.activeFilters= {intensity:0,clubs:(this.defaults.club!=='' && typeof this.defaults.club!=='undefined')?[this.defaults.club]:[],class:(this.defaults.class!=='' && typeof this.defaults.class!=='undefined')?[this.defaults.class]:[],category:(this.defaults.category!=='' && typeof this.defaults.category!=='undefined')?[this.defaults.category]:[]};
     this.classes      = {};
     this.times        = ['morning','afternoon','evening'];
     this.selectedDay  = new Date().getDay()-1;
@@ -96,6 +96,9 @@ class CalendarStore extends EventEmitter {
 
       //CLUB
       if(this.activeFilters.clubs.indexOf(''+e.club_id)===-1 && this.activeFilters.clubs.length!==0)return false;
+
+      //CLASS
+      if(this.activeFilters.class.indexOf(''+e.class_id)===-1 && this.activeFilters.class.length!==0)return false;
 
       //CAT
       //console.log(this.activeFilters.category.indexOf(e.class_id),e.club_id,this.activeFilters.category,this.activeFilters.category.length)
