@@ -40,7 +40,7 @@ export default class Header extends React.Component {
 
 
 
-  render() {
+  render() { 
 
 
     let ptCalendar = Object.keys(this.state.trainers).map((key) => {
