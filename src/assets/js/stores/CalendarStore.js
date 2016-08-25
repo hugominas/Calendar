@@ -11,10 +11,12 @@ class CalendarStore extends EventEmitter {
     this.defaults.schedule=this.defaults.path+'/schedule.json';
     this.defaults.filters=this.defaults.path+'/filters.json';
     this.calendar     = {morning:{},afternoon:{},nigth:{}};
-    this.dayTitleTable= ['Aula','Hora','Local','Categoria','Clube'];
+    this.dayTitleTable= ['Class','Hour','Location','Category','Club'];
+    this.ptColours    = ['blue','green','orange','yellow','purple'];
     this.weekDays     = ['Monday','Tuesday','Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     this.monthNames   = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.filters      = {};
+    this.activeTrainers= [];
     this.activeFilters= {intensity:0,clubs:(this.defaults.club!=='' && typeof this.defaults.club!=='undefined')?[this.defaults.club]:[],class:(this.defaults.class!=='' && typeof this.defaults.class!=='undefined')?[this.defaults.class]:[],category:(this.defaults.category!=='' && typeof this.defaults.category!=='undefined')?[this.defaults.category]:[]};
     this.classes      = {};
     this.times        = ['morning','afternoon','evening'];
@@ -30,6 +32,14 @@ class CalendarStore extends EventEmitter {
 
   getActiveClass(){
     return this.selectedClass;
+  }
+
+  getActiveTrainers(){
+    return this.activeTrainers;
+  }
+
+  getPtCoulors(){
+    return this.ptColours;
   }
 
   getIntensity(){
@@ -89,6 +99,7 @@ class CalendarStore extends EventEmitter {
   }
 
   doFiltersOn(ele){
+    let loopCoulors = 0;
     ele=ele.map((e) => {
       let isValid = e;
       //INTENSITY
@@ -103,6 +114,9 @@ class CalendarStore extends EventEmitter {
       //CAT
       //console.log(this.activeFilters.category.indexOf(e.class_id),e.club_id,this.activeFilters.category,this.activeFilters.category.length)
       if(this.activeFilters.category.indexOf(''+e.class_id)===-1 && this.activeFilters.category.length!==0)return false;
+
+      //UPDATE TRAINERS
+      if(this.activeTrainers.filter((val)=>{return val.name==isValid.pt}).length==0){this.activeTrainers.push({name:isValid.pt, colour:this.ptColours[loopCoulors]});loopCoulors++;}
 
       return isValid;
     });
@@ -231,7 +245,6 @@ class CalendarStore extends EventEmitter {
         this.emit("change");
         break;
       }
-
 
     }
   }

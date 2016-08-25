@@ -23,7 +23,6 @@ export default class WeekDay extends React.Component {
 
   updageHighlight(){
     this.state.activeClassId=CalendarStore.getActiveClass()
-
   }
 
   componentWillMount() {
@@ -65,7 +64,7 @@ export default class WeekDay extends React.Component {
           })
         i++;
 
-        return <div class="dayTitle col dayRow weekday animated fadeInLeft" key={i}>{prop}</div>;
+        return <div class="col dayRow weekday animated fadeInUp" key={i}>{prop}</div>;
     });
 
 

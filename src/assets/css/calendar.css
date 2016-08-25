@@ -420,6 +420,7 @@ input[type="checkbox"]:checked + label {
     width: 11.5%;
     float: left;
     min-height: 35px;
+    margin-left: 1%;
 }
 
 .dayTop {
@@ -1068,6 +1069,7 @@ a.linkDetails {
 
 .mainSchedule.top{
   border-bottom: 0;
+  padding-bottom: 0;
   border-radius: 0;
 }
 .mainSchedule.top .col.span_11_of_12{
@@ -1075,9 +1077,11 @@ a.linkDetails {
 }
 .mainSchedule.bot .col.span_11_of_12{
   margin-top: none;
+  display: flex;
 }
 .mainSchedule.bot{
   border-top: none;
+  padding-top: 0;
   border-radius: 0;
 }
 
@@ -1085,18 +1089,22 @@ a.linkDetails {
     cursor: pointer;
 }
 .dayRow {
-width: 12.9%;
+    width: 12.9%;
     float: left;
+        min-height: 40px;
+        margin-top: 0;
+        margin-bottom: 0;
     border-right: 1px solid #e5e0ce
 }
 .dayRow:last-child {
     border-right: 0;
 }
 .weekday span {
-    display: block;
+    display: inline-block;
         width: 80%;
         margin:0 auto;
     text-align: center;
+
 }
 
 .weekday span.days {
@@ -1165,7 +1173,6 @@ font-family: 'Lato-bold';
     border-radius: 5px;
     padding: 3px 0px;
     padding-left: 11px;
-    margin-top: 5px;
 }
 
 .hourBlock div {
@@ -1178,32 +1185,26 @@ font-family: 'Lato-bold';
     color: #565656;
 }
 .profSlice{
-    width: 20px;
+    width: 20px!important;
     border-radius: 3px;
     height: 4px;
-    display: block;
-    margin-top: 8px;
-    margin-right: 10px;
-    float: right;
-}
+    display: inline-block;
+  }
 .imgmorning {
     background: url('../images/morningBeje.png') no-repeat;
     background-position: center center;
-    margin-top: 14px;
     padding: 15px;
 }
 
 .imgafternoon {
     background: url('../images/afternoonBeje.png') no-repeat;
     background-position: center center;
-    margin-top: 14px;
     padding: 15px;
 }
 
 .imgevening {
     background: url('../images/nightBeje.png') no-repeat;
     background-position: center center;
-    margin-top: 14px;
     padding: 15px;
 }
 

@@ -20,6 +20,7 @@ export default class Header extends React.Component {
       weekDays: CalendarStore.getWeekDays(),
       monthNames: CalendarStore.getMonthNames(),
       view: CalendarStore.getView(),
+      trainers:CalendarStore.getActiveTrainers(),
       width:this.updateDimensions().width,
       height:this.updateDimensions().height
     };
@@ -51,19 +52,12 @@ export default class Header extends React.Component {
       weekDays: CalendarStore.getWeekDays(),
       monthNames: CalendarStore.getMonthNames(),
       view: CalendarStore.getView(),
+      trainers:CalendarStore.getActiveTrainers(),
       width:this.updateDimensions().width,
       height:this.updateDimensions().height
     });
   }
 
-  filterDay(day) {
-    return ()=> {
-      //CHECK IF ITS ON DAY METHOD TO AVOID MEMORY LLEACK
-      //fix for sunday offest
-      day=((day.getDay())==0)?6:day.getDay()-1;
-      CalendarActions.setToday(day);
-    }
-  }
 
 
   render() {
@@ -81,7 +75,7 @@ export default class Header extends React.Component {
       delay+=0.1;
       let nameDay = (this.state.width>451)?key:key.substring(0,3);
       //Working with theoffset
-      return <div style={{animationDelay: delay+'s'}} class={'col dayRow weekday animated fadeInLeft'+((this.state.clickedDay==thisDayComp)?' active':'')} key={x} onMouseOver={this.filterDay(thisDate)}><div class="weekday"><div class="activeCircle"></div><span class="days">{nameDay}</span><span class="dateSche">{thisDay} {thisMonth}</span><span class="articleDashSchedule"></span></div></div>
+      return <div style={{animationDelay: delay+'s'}} class={'col dayRow weekday animated fadeInUp'+((this.state.clickedDay==thisDayComp)?' active':'')} key={x}><div class="weekday"><div class="activeCircle"></div><span class="days">{nameDay}</span><span class="dateSche">{thisDay} {thisMonth}</span><span class="articleDashSchedule"></span></div></div>
     })
 
 

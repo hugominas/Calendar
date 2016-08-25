@@ -75,9 +75,6 @@ export function resetGym() {
   });
 }
 
-
-
-
 export function reloadFilters() {
   dispatcher.dispatch({type: "FETCH_FILTERS"});
    axios(CalendarStore.getFiltersURL()).then((data) => {
